@@ -7,46 +7,59 @@ nav_order: 3
 # Tool reference
 {: .no_toc }
 
-Every tool the PageToVid MCP server publishes — **38 tools** — generated from the server's own `tools/list`, so each parameter here is exactly what your client receives. Endpoint: `https://pagetovid.com/mcp`.
+Every tool the PageToVid MCP server publishes — **51 tools** — generated from the server's own `tools/list`, so each parameter here is exactly what your client receives. Endpoint: `https://pagetovid.com/mcp`.
 
 | Tool | Cost | What it does |
 |---|---|---|
 | [`cancel_video`](#cancel_video) | Free | Stops a render that is still running and returns every credit it spent — the render credit and any AI stills or clips it had already generated. |
+| [`copy_scene`](#copy_scene) | Free | Copies a scene into another of your videos with its footage and generated media, so nothing is filmed or generated again. |
 | [`create_animation`](#create_animation) | 40 credits | Make a video from data. |
 | [`create_character`](#create_character) | Free or 40 credits | Names a character so a generated clip that names it keeps the same identity across scenes (Veo 3.1 ingredients-to-video). |
 | [`create_format`](#create_format) | Free | A format is how an episode is made — aspect, language, voice, music, tone, goal, length, cards, brand, theme, the brief or the scene templates — and knows nothi |
+| [`create_object`](#create_object) | Free | Names a product, bag, watch, logo, packaging, place, vehicle or UI screen from reference images so films keep it identical. |
 | [`create_show`](#create_show) | Free | A show makes a video from each new item in a feed — the same storyboard every episode, new data every episode: a weekly release video from a changelog, a daily  |
 | [`create_video`](#create_video) | 40 credits | Starts a PageToVid render that turns a public web page URL into a narrated video with an AI voiceover, motion graphics and optional subtitles. |
+| [`delete_object`](#delete_object) | Free | Deletes an object by name. |
 | [`detect_brand`](#detect_brand) | Free | Opens a public web page in a real browser and reads its design tokens from the live CSS: accent colours, heading typeface, light or dark ground and corner style |
 | [`fork_format`](#fork_format) | Free | A new format whose version 1 is the original's latest version, unpinned from its parent. |
 | [`generate_asset`](#generate_asset) | 40 or 311 credits | Generates a single AI still (40 credits) or house clip (311 credits) straight into your media bank and returns its id and URL — no project, no render, no minimu |
 | [`generate_site_videos`](#generate_site_videos) | 40 credits | Per video started. |
 | [`get_account`](#get_account) | Account | CALL THIS FIRST. |
 | [`get_format`](#get_format) | Free | The format's current template, its version history and the shows that run it, with each show's pin. |
+| [`get_frames`](#get_frames) | Free | JPEG stills (≤ 1280 px wide) cut from the finished MP4 at 1–6 moments in seconds, as URLs. |
 | [`get_site_plan`](#get_site_plan) | Free | Returns the plan for a site: the videos it should have, each with a goal, a pitch, an audience, a ready creative brief and the shots it needs — and, for each, t |
 | [`get_storyboard`](#get_storyboard) | Account | Returns the scene-by-scene plan of a video: what each scene narrates, its on-screen caption, how long it holds, and whether it is real footage of the page or a  |
+| [`get_timeline`](#get_timeline) | Free | Each scene's start and end in the finished MP4 (seconds), what drew it (recording, page still, AI clip/still, footage, graphic, card, inset), its transition, it |
 | [`get_video`](#get_video) | Account | Reports how far a PageToVid render has got and, once it is finished, returns the video, poster and subtitle links. |
 | [`get_video_embed`](#get_video_embed) | Free | Returns ready-to-paste markup for a finished PageToVid video: an HTML video element, Open Graph and Twitter player meta tags so the page unfurls as a playable v |
+| [`import_objects`](#import_objects) | Free | Creates or replaces up to 50 objects from a product feed. |
 | [`inspect_page`](#inspect_page) | Free | Opens a public web page in a real browser and lists what a video could point its camera at, ranked: calls to action, product images, cards, pricing blocks, test |
-| [`list_assets`](#list_assets) | Free | Your PRIVATE bank: every image and clip this account generated, uploaded or captured, newest first, with its id, URL, brief and tags. |
+| [`list_assets`](#list_assets) | Free | Your PRIVATE bank: every image, clip and audio file this account generated, uploaded or captured, newest first, with its id, URL, brief and tags. |
 | [`list_characters`](#list_characters) | Free | The reusable characters on this account, each with its reference images and description. |
 | [`list_commons_assets`](#list_commons_assets) | Free | Media people shared from their banks for anyone to use in a film — logos, product shots, illustrations, recorded flows — with tags, a licence and the site to cr |
 | [`list_connections`](#list_connections) | Free | Every registered connection with its alias, kind and URL. |
 | [`list_formats`](#list_formats) | Free | The account's formats, newest change first, with versions and the shows running each. |
 | [`list_models`](#list_models) | Free | Every model this account can generate clips and stills with — capabilities, limits and the exact credit price — before spending anything. |
 | [`list_motions`](#list_motions) | Free | List animations, motions, visuals and chart types. |
+| [`list_objects`](#list_objects) | Free | The reusable objects on this account, with reference images, kind and metadata (price, brand, sku). |
+| [`list_scenes`](#list_scenes) | Free | Saved scenes, newest first: name, id, visual, aspect, whether footage is kept, the {{placeholders}} each needs as params, and tags. |
 | [`list_shows`](#list_shows) | Account | Lists the shows on this account — or one site's — with their cadence, caps, whether each is confirmed or still held, what it spent today, and its five most rece |
 | [`list_themes`](#list_themes) | Free | Lists what the theme parameter accepts: the built-in presets, the modes, the type faces the renderer can actually load, and the contrast and palette rules that  |
 | [`list_video_options`](#list_video_options) | Free | Lists what create_video accepts: goals, aspect ratios, languages, voices, background music beds (eight, each with a family: calm, energetic, serious, playful) a |
 | [`list_videos`](#list_videos) | Account | Lists videos newest first with their status and, when finished, their links. |
+| [`list_voices`](#list_voices) | Free | The narrator voices with measured pitch (band and median Hz) and a short sample in the chosen language where one exists (else sample_url is null). |
 | [`preview_episode`](#preview_episode) | Free | Runs the format's resolvers against the item (real upstream calls, cached where the format says so), compiles the storyboard and returns every beat's final text |
 | [`quote_cost`](#quote_cost) | Free | What something will cost in credits, spending nothing. |
 | [`register_mcp_connection`](#register_mcp_connection) | Free | Registers (or replaces) a connection by alias: the URL and, optionally, a credential kept encrypted on this account. |
+| [`release_video`](#release_video) | Free | Publishes a video its quality_gate held (status "held") as it is: status becomes done. |
 | [`rerender_video`](#rerender_video) | 40 credits | Produces a new film from the video's current storyboard, skipping the page analysis and scripting that create_video does. |
 | [`run_show`](#run_show) | 40 credits | Per episode started. |
+| [`save_scene`](#save_scene) | Free | Saves a scene for reuse: narration, visual, data, style AND its footage and generated media (copied so deleting the film cannot break it). |
 | [`update_format`](#update_format) | Free | Changes any of a format's template fields. |
+| [`update_object`](#update_object) | Free | Changes only the fields sent. |
 | [`update_show`](#update_show) | Free | Changes a show's switch, cadence, caps or name, or moves it to another format or format version. |
 | [`update_storyboard`](#update_storyboard) | Free | Changes a video's storyboard: rewrite what a scene says, change its caption or heading, redraw it as a different visual, correct its data, tint it, point its ca |
+| [`upload_asset`](#upload_asset) | Free | Fetches a public https file into your private bank: logo, product photo, footage or music bed. |
 | [`validate_format`](#validate_format) | Free | Compiles the template against a sample item without touching the database or any feed: the catalogue checks (voice, music, language, theme…), the scene template |
 | [`verify_episode`](#verify_episode) | Free | The proof behind a film. |
 
@@ -63,6 +76,19 @@ Stops a render that is still running and returns every credit it spent — the r
 |---|---|---|---|
 | `video_id` | string | yes | The running video to stop. |
 
+## copy_scene
+
+**Cost:** Free
+
+Copies a scene into another of your videos with its footage and generated media, so nothing is filmed or generated again. A recording cannot change aspect, nor go into a film made from data. Does not re-render.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `from_video_id` | string | yes | The video the scene is in. |
+| `scene_id` | string | yes | The scene to copy, from get_storyboard. |
+| `to_video_id` | string | yes | The video to copy it into (may be the same one). |
+| `after_scene_id` | string |  | Put it after this scene of the target. Omitted: at the end. |
+
 ## create_animation
 
 **Cost:** 40 credits
@@ -71,11 +97,11 @@ Make a video from data. Create, make, generate or render an animated video, expl
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `scenes` | array | yes | The scenes to draw, in order, 1-20. Every one is validated before anything is created or charged. The render costs 40 credit; on top of that each scene that generates an AI visual is metered — a still (data.generate) 40, a clip (data.clip) 311 — charged per visual, refunded if one fails, and skipped if you run out. get_account returns credit_costs. |
+| `scenes` | array | yes | The scenes to draw, in order, 1-20. Every one is validated before anything is created or charged. The render costs 40 credits; on top of that each scene that generates an AI visual is metered — a still (data.generate) 40, a clip (data.clip) 311 — charged per visual, refunded if one fails, and skipped if you run out. get_account returns credit_costs. |
 | `aspect_ratio` | `16:9` · `9:16` · `1:1` |  | 16:9 for web and YouTube, 9:16 for Reels/Shorts/TikTok, 1:1 for feeds. Default `"16:9"`. |
 | `language` | `en` · `fr` · `es` · `de` · `it` · `pt` · `nl` |  | Language of the voiceover and captions. Write the narration in this language. Default `"en"`. |
 | `voice` | `auto` · `Kore` · `Zephyr` · `Puck` · `Charon` · `Aoede` · `Fenrir` · `Leda` · `Orus` · `Callirrhoe` · `Achird` · `Sulafat` · `Sadachbia` |  | Voice character (every voice is multilingual). auto picks a voice that fits the goal and tone and differs from the site's previous films; name one to fix it. Default `"auto"`. |
-| `music` | `auto` · `none` · `uplift` · `corporate` · `chill` · `cinematic` · `ambient` · `pulse` · `playful` · `warm` |  | Background music bed, or "none". auto fits the goal and differs from the site's previous films; name one to fix it. Only the listed ids — these are tracks, not a style prompt. Default `"auto"`. |
+| `music` | string |  | Background music bed, or "none". auto fits the goal and differs from the site's previous films; name one to fix it, or "asset:<id>" for an audio file from upload_asset. Default `"auto"`. |
 | `tone` | string |  | Delivery of the narration, up to 80 characters — e.g. energetic, calm, authoritative, or a short direction like "dry and deadpan, like a friend telling a story". Default `"energetic"`. |
 | `subtitles` | boolean |  | Burn captions into the picture and emit a .vtt sidecar. Default `true`. |
 | `intro` | boolean |  | Include the branded opening title card. Default `true`. |
@@ -96,7 +122,7 @@ Make a video from data. Create, make, generate or render an animated video, expl
 | `cursor_style` | `arrow` · `hand` · `dot` · `none` |  | The pointer the recording draws: the system arrow, a pointing hand, a presenter's dot, or none. |
 | `press_effect` | `punch` · `freeze` · `slowmo` · `none` |  | What the picture does when the cursor presses something: punch in, freeze for a beat, half speed, or nothing. |
 | `end_screen` | `cta` · `qr` · `social` · `logo` · `none` |  | The closing card: the call to action, the same with a scannable code to the film's page, the brand's handles, the mark alone, or no card. |
-| `ai_budget` | object |  | A ceiling on AI generation for this render, so a plan full of clips cannot surprise you with the bill. Generation is metered (40 credit a still, 311 a clip, on top of 40 for the render), and the response always returns ai_plan with what was asked for and the estimated cost. Omitted, nothing is capped. |
+| `ai_budget` | object |  | A ceiling on AI generation for this render, so a plan full of clips cannot surprise you with the bill. Generation is metered (40 credits a still, 311 a house clip, on top of 40 for the render), and the response always returns ai_plan with what was asked for and the estimated cost. Omitted, nothing is capped. |
 | `idempotency_key` | string |  | A caller-chosen id for this request. Sending the same key again within 24 hours returns the original video instead of rendering and charging a second time — use it if your client may retry. |
 
 ## create_character
@@ -130,7 +156,7 @@ A format is how an episode is made — aspect, language, voice, music, tone, goa
 | `target_seconds` | integer |  | How long the film should be. Here it is a CHECK, not a setting: you wrote the narration and a narrated scene lasts exactly as long as its words, so nothing can stretch or shrink it. If the script misses this by more than 15%, the call is refused before any credit moves, and the refusal says how many words 45 seconds actually carries and how many to cut or add. Omit it and any length between 15 and 180 s is accepted. Range 15–180. |
 | `tone` | string |  | Delivery of the narration, up to 80 characters — e.g. energetic, calm, authoritative, or a short direction like "dry and deadpan, like a friend telling a story". Default `"energetic"`. |
 | `voice` | `auto` · `Kore` · `Zephyr` · `Puck` · `Charon` · `Aoede` · `Fenrir` · `Leda` · `Orus` · `Callirrhoe` · `Achird` · `Sulafat` · `Sadachbia` |  | Voice character (every voice is multilingual). auto picks a voice that fits the goal and tone and differs from the site's previous films; name one to fix it. Default `"auto"`. |
-| `music` | `auto` · `none` · `uplift` · `corporate` · `chill` · `cinematic` · `ambient` · `pulse` · `playful` · `warm` |  | Background music bed, or "none". auto fits the goal and differs from the site's previous films; name one to fix it. Only the listed ids — these are tracks, not a style prompt. Default `"auto"`. |
+| `music` | string |  | Background music bed, or "none". auto fits the goal and differs from the site's previous films; name one to fix it, or "asset:<id>" for an audio file from upload_asset. Default `"auto"`. |
 | `subtitles` | boolean |  | Burn captions into the picture and emit a .vtt sidecar. Default `true`. |
 | `intro` | boolean |  | Include the branded opening title card. Default `true`. |
 | `outro` | boolean |  | Include the closing call-to-action card. Default `true`. |
@@ -141,6 +167,22 @@ A format is how an episode is made — aspect, language, voice, music, tone, goa
 | `scenes` | array |  | animation formats: the scene templates, as create_animation takes scenes, with the placeholders in any string. |
 | `programme` | object |  | animation formats: the programme instead of plain scenes. {beats: [...], resolvers: [...], computed: {...}, requires_beats: [...], reject_if: [...]}. A beat is a scene (visual, motion, mood, heading, caption, narration, data) plus beat (one of cold_open, title, identity, context, trend, breakdown, outlier, comparison, caveats, verdict, sources), when (an expression; dropped when not true) and for_each (an expression yielding a list; repeated per element). Any string may carry {{ expressions }} — dotted paths and filters such as money(EUR,M), percent(0), say, sort_by(year), take_last(6), map({label: year, value: total}) — and any field may be {"$bind": "expression"} to receive a real number, list or object (a chart's points). Resolvers fetch data before compiling: {id, call: {mcp: alias, tool, input} | {http: url, query, body}, select, required, on_missing: skip_episode | drop_beats(a,b) | use_default | fail_loud, cache: "30d"}; each reads what the ones before it bound. Every numeral in a narration or caption must come from an expression: a figure typed by hand fails validation by beat. validate_format checks the template; preview_episode runs the resolvers and compiles a real episode for free. |
 | `routing` | object |  | How episodes are made: {planner?: flash|pro, footage?: prefer-recorded|record-fresh}. flash is the benched default (it beat every larger model under the real prompt); pro is a deliberate choice. prefer-recorded uses the site's banked flow recordings when they match a scene; record-fresh films every episode anew, for a subject that changes each time. |
+
+## create_object
+
+**Cost:** Free
+
+Names a product, bag, watch, logo, packaging, place, vehicle or UI screen from reference images so films keep it identical. Generated pictures take it in data.objects (clips, stills, insets, generate_asset) next to a character; image, gallery, pricing and compare cards draw it from data.object with its name and price. The same name replaces the earlier object.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `name` | string | yes | The object's name, e.g. "Aurora watch". Scenes name it. |
+| `kind` | `product` · `bag` · `watch` · `logo` · `packaging` · `place` · `vehicle` · `ui_screen` · `other` | yes | What it is. |
+| `refs` | array | yes | 1-6 reference images, best first: asset ids (list_assets) or media URLs on this account. |
+| `description` | string | null |  | One line added to every prompt that names it. |
+| `site_url` | string |  | Scope it to one of your sites. |
+| `source_url` | string |  | Where it comes from (a product page). Attribution only. |
+| `metadata` | object |  | {price, currency (ISO 4217), brand, sku, url}. A price is drawn on pricing/compare/image cards. |
 
 ## create_show
 
@@ -170,7 +212,7 @@ A show makes a video from each new item in a feed — the same storyboard every 
 | `target_seconds` | integer |  | How long the film should be. Here it is a CHECK, not a setting: you wrote the narration and a narrated scene lasts exactly as long as its words, so nothing can stretch or shrink it. If the script misses this by more than 15%, the call is refused before any credit moves, and the refusal says how many words 45 seconds actually carries and how many to cut or add. Omit it and any length between 15 and 180 s is accepted. Range 15–180. |
 | `tone` | string |  | Delivery of the narration, up to 80 characters — e.g. energetic, calm, authoritative, or a short direction like "dry and deadpan, like a friend telling a story". Default `"energetic"`. |
 | `voice` | `auto` · `Kore` · `Zephyr` · `Puck` · `Charon` · `Aoede` · `Fenrir` · `Leda` · `Orus` · `Callirrhoe` · `Achird` · `Sulafat` · `Sadachbia` |  | Voice character (every voice is multilingual). auto picks a voice that fits the goal and tone and differs from the site's previous films; name one to fix it. Default `"auto"`. |
-| `music` | `auto` · `none` · `uplift` · `corporate` · `chill` · `cinematic` · `ambient` · `pulse` · `playful` · `warm` |  | Background music bed, or "none". auto fits the goal and differs from the site's previous films; name one to fix it. Only the listed ids — these are tracks, not a style prompt. Default `"auto"`. |
+| `music` | string |  | Background music bed, or "none". auto fits the goal and differs from the site's previous films; name one to fix it, or "asset:<id>" for an audio file from upload_asset. Default `"auto"`. |
 | `subtitles` | boolean |  | Burn captions into the picture and emit a .vtt sidecar. Default `true`. |
 | `intro` | boolean |  | Include the branded opening title card. Default `true`. |
 | `outro` | boolean |  | Include the closing call-to-action card. Default `true`. |
@@ -191,20 +233,20 @@ Starts a PageToVid render that turns a public web page URL into a narrated video
 |---|---|---|---|
 | `url` | string | yes | Public http(s) URL of the page to film. You must have the right to make a video from this page. |
 | `goal` | `explainer` · `ad` · `demo` · `tutorial` · `article` |  | What the video is for. Shapes the script's structure and pacing. Default `"explainer"`. |
-| `aspect_ratio` | `16:9` · `9:16` · `1:1` |  | 16:9 for web and YouTube, 9:16 for Reels/Shorts/TikTok, 1:1 for feeds. The shape chooses the device: 9:16 films the page's own MOBILE layout in a 414×736 phone viewport at 3× with an iPhone user agent (breakpoints, touch targets, stacked sections); 16:9 and 1:1 film the 1280-wide desktop layout. Nothing is squeezed from one into the other. Default `"16:9"`. |
+| `aspect_ratio` | `16:9` · `9:16` · `1:1` |  | 16:9 for web and YouTube, 9:16 for Reels/Shorts/TikTok, 1:1 for feeds. 9:16 films the page's own MOBILE layout (414×736 phone viewport at 3×, iPhone user agent); 16:9 and 1:1 film the 1280-wide desktop layout. Nothing is squeezed from one into the other. Default `"16:9"`. |
 | `language` | `en` · `fr` · `es` · `de` · `it` · `pt` · `nl` |  | Language of the script and voiceover. These are the languages PageToVid verifies end to end. Default `"en"`. |
 | `target_seconds` | integer |  | Target length in seconds. The finished film is measured against this, not estimated. Default `45`. Range 15–180. |
 | `subtitles` | boolean |  | Burn captions into the picture and emit a .vtt sidecar. Default `true`. |
 | `tone` | string |  | Delivery of the narration, up to 80 characters — e.g. energetic, calm, authoritative, or a short direction like "dry and deadpan, like a friend telling a story". Default `"energetic"`. |
 | `voice` | `auto` · `Kore` · `Zephyr` · `Puck` · `Charon` · `Aoede` · `Fenrir` · `Leda` · `Orus` · `Callirrhoe` · `Achird` · `Sulafat` · `Sadachbia` |  | Voice character (every voice is multilingual). auto picks a voice that fits the goal and tone and differs from the site's previous films; name one to fix it. Default `"auto"`. |
-| `music` | `auto` · `none` · `uplift` · `corporate` · `chill` · `cinematic` · `ambient` · `pulse` · `playful` · `warm` |  | Background music bed, or "none". auto fits the goal and differs from the site's previous films; name one to fix it. Only the listed ids — these are tracks, not a style prompt. Default `"auto"`. |
+| `music` | string |  | Background music bed, or "none". auto fits the goal and differs from the site's previous films; name one to fix it, or "asset:<id>" for an audio file from upload_asset. Default `"auto"`. |
 | `brand_name` | string |  | Name shown on the intro and outro cards. Defaults to the site's own name. |
 | `focus` | string |  | Context the page cannot show, treated as authoritative by the script writer: a launch or offer to lead with, the audience, a referral code, something to avoid. Anything written here may be voiced as FACT in the finished film — an angle and a claim are not distinguished — so put only what you are prepared to have said in the customer’s voice. A line in quotation marks is placed verbatim, usually as the hook. |
 | `idempotency_key` | string |  | A caller-chosen id for this request. Sending the same key again within 24 hours returns the original video instead of rendering and charging a second time — use it if your client may retry. |
 | `theme` | object |  | The film's visual identity: palette, type and mode. Call list_themes for the presets and the rules, or detect_brand to read a site's own. Omitted, an animation uses the house palette and a filmed video adopts whatever the page's CSS says. |
-| `intro` | boolean |  | Include the branded opening title card. Defaults to true, EXCEPT for goal "ad", where it defaults to false: the card is 1.5s, a view is counted at 3s, and about 47% of a campaign's measured value lands in that window — an ad should open on the hook, not a logo. Pass it explicitly to override either way. Default `true`. |
+| `intro` | boolean |  | Include the branded opening title card (1.5 s). Defaults to true, except for goal "ad", where it defaults to false so the ad opens on its hook — a view counts at 3 s. Pass it explicitly to override either way. Default `true`. |
 | `outro` | boolean |  | Include the closing call-to-action card. Default `true`. |
-| `routing` | object |  | How the film is MADE, as opposed to what it says: {planner?: flash|pro, footage?: prefer-recorded|record-fresh}. flash is the benched default and beat every larger model under this prompt, so pro is a deliberate choice rather than an upgrade. prefer-recorded reuses the site's banked flow recordings when one matches a scene — footage of the product as it really behaved; record-fresh films everything anew, for a page whose content changes between renders. |
+| `routing` | object |  | How the film is MADE: {planner?: flash|pro, footage?: prefer-recorded|record-fresh}. flash is the benched default and beat every larger model, so pro is a choice, not an upgrade. prefer-recorded reuses the site's banked flow recordings when one matches a scene; record-fresh films everything anew. |
 | `look` | `clean` · `bold` · `editorial` · `playful` · `tech` · `auto` |  | The film's LOOK: captions, cutting, sound cues, music family and motion register chosen together. auto picks one from the goal, the shape and the site's film count, so two films of a site differ; list_video_options describes each. Default `"auto"`. |
 | `caption_style` | `karaoke` · `bold` · `boxed` · `minimal` · `outline` |  | Caption style overriding the look's own; omit it to keep the look's. |
 | `caption_animation` | `none` · `pop` · `bounce` · `wave` · `glow` · `slide` |  | What a caption's word does when it is spoken, overriding the look's own. |
@@ -215,6 +257,20 @@ Starts a PageToVid render that turns a public web page URL into a narrated video
 | `cursor_style` | `arrow` · `hand` · `dot` · `none` |  | The pointer the recording draws: the system arrow, a pointing hand, a presenter's dot, or none. |
 | `press_effect` | `punch` · `freeze` · `slowmo` · `none` |  | What the picture does when the cursor presses something: punch in, freeze for a beat, half speed, or nothing. |
 | `end_screen` | `cta` · `qr` · `social` · `logo` · `none` |  | The closing card: the call to action, the same with a scannable code to the film's page, the brand's handles, the mark alone, or no card. |
+| `ai_mode` | `none` · `assist` · `rich` |  | AI visuals for beats the page cannot show (paid plans): none; assist (default) a few stills; rich stills and clips within ai_budget, the screencast floor kept. Charged per visual as made (quote_cost), refunded on failure. |
+| `ai_budget` | object |  | Ceiling on AI visuals. The plan is written after this returns, so the planner is given it and anything past it is dropped (refuse = fallback here); queue lifts it. |
+| `model` | string |  | Clip model (list_models) for ai_mode rich; omit for the house clip. |
+| `quality_gate` | object |  | auto_fix (default): dead air shortened and colliding overlays moved before rendering, listed in auto_fixes. hold: the same, and a film scored under min_score ends "held", unpublished until release_video. deliver: as authored. |
+
+## delete_object
+
+**Cost:** Free · destructive
+
+Deletes an object by name. Its images stay in your bank and media made with it stays in its films.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `name` | string | yes | The object to delete. |
 
 ## detect_brand
 
@@ -250,6 +306,7 @@ Generates a single AI still (40 credits) or house clip (311 credits) straight in
 | `prompt` | string | yes | What to draw or film. |
 | `aspect_ratio` | `16:9` · `9:16` · `1:1` |  | Shape of the asset. Default 16:9. |
 | `character` | string |  | A character from create_character, so the same face comes back. |
+| `objects` | array |  | Object names (list_objects) kept consistent, after the character. |
 | `tags` | string |  | Comma-separated tags, to find it again. |
 | `site_url` | string |  | Attach it to one of your sites. |
 
@@ -267,7 +324,7 @@ Per video started. Starts a video for each idea in the site's plan (see get_site
 | `aspect_ratio` | `16:9` · `9:16` · `1:1` |  | 16:9 for web and YouTube, 9:16 for Reels/Shorts/TikTok, 1:1 for feeds. Default `"16:9"`. |
 | `language` | `en` · `fr` · `es` · `de` · `it` · `pt` · `nl` |  | Language of the voiceover and captions. Write the narration in this language. Default `"en"`. |
 | `voice` | `auto` · `Kore` · `Zephyr` · `Puck` · `Charon` · `Aoede` · `Fenrir` · `Leda` · `Orus` · `Callirrhoe` · `Achird` · `Sulafat` · `Sadachbia` |  | Voice character (every voice is multilingual). auto picks a voice that fits the goal and tone and differs from the site's previous films; name one to fix it. Default `"auto"`. |
-| `music` | `auto` · `none` · `uplift` · `corporate` · `chill` · `cinematic` · `ambient` · `pulse` · `playful` · `warm` |  | Background music bed, or "none". auto fits the goal and differs from the site's previous films; name one to fix it. Only the listed ids — these are tracks, not a style prompt. Default `"auto"`. |
+| `music` | string |  | Background music bed, or "none". auto fits the goal and differs from the site's previous films; name one to fix it, or "asset:<id>" for an audio file from upload_asset. Default `"auto"`. |
 | `subtitles` | boolean |  | Burn captions into the picture and emit a .vtt sidecar. Default `true`. |
 | `intro` | boolean |  | Include the branded opening title card. Default `true`. |
 | `outro` | boolean |  | Include the closing call-to-action card. Default `true`. |
@@ -296,6 +353,17 @@ The format's current template, its version history and the shows that run it, wi
 |---|---|---|---|
 | `format_id` | string | yes | The format_id from create_format or list_formats. |
 
+## get_frames
+
+**Cost:** Free · read-only
+
+JPEG stills (≤ 1280 px wide) cut from the finished MP4 at 1–6 moments in seconds, as URLs. Cached per render.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `video_id` | string | yes | The video's id. |
+| `times` | array | yes | 1–6 times in seconds (0.1 s steps). |
+
 ## get_site_plan
 
 **Cost:** Free
@@ -318,11 +386,21 @@ Returns the scene-by-scene plan of a video: what each scene narrates, its on-scr
 |---|---|---|---|
 | `video_id` | string | yes | The video_id to read. |
 
+## get_timeline
+
+**Cost:** Free · read-only
+
+Each scene's start and end in the finished MP4 (seconds), what drew it (recording, page still, AI clip/still, footage, graphic, card, inset), its transition, its slice of the one voice track with word onsets, plus the music and caption style. timeline_source: stored by the render, or rebuilt from the scenes.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `video_id` | string | yes | The video's id. |
+
 ## get_video
 
 **Cost:** Account · read-only
 
-Reports how far a PageToVid render has got and, once it is finished, returns the video, poster and subtitle links. While a render is in progress the result includes a suggested number of seconds to wait before checking again. `status` is one of, in pipeline order: draft, queued, analyzing, scripting, recording, voicing, rendering, done, error. In flight, so poll again after poll_after_seconds: queued, analyzing, scripting, recording, voicing, rendering. Terminal, so stop polling: done, error — a cancelled render ends as error with the reason in `error`, and a film can be done and still carry warnings. draft has not been queued.
+Reports how far a PageToVid render has got and, once it is finished, returns the video, poster and subtitle links. While a render is in progress the result includes a suggested number of seconds to wait before checking again. `status` is one of, in pipeline order: draft, queued, analyzing, scripting, recording, voicing, rendering, held, done, error. In flight, so poll again after poll_after_seconds: queued, analyzing, scripting, recording, voicing, rendering. Terminal, so stop polling: held, done, error — a cancelled render ends as error with the reason in `error`, and a film can be done and still carry warnings. held: finished but unpublished by quality_gate. draft has not been queued.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
@@ -341,6 +419,17 @@ Returns ready-to-paste markup for a finished PageToVid video: an HTML video elem
 | `title` | string |  | Overrides the title in the share card. Defaults to the video's own title. |
 | `description` | string |  | Overrides the share description. Defaults to a sentence written in the video's language. |
 
+## import_objects
+
+**Cost:** Free
+
+Creates or replaces up to 50 objects from a product feed. Each image is downloaded (public addresses only) and banked as a reference. Failed rows are listed with the reason.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `items` | array | yes | 1-50 catalogue rows. image_url: one public image URL or a list (best first, up to 6); kind defaults to product. |
+| `site_url` | string |  | Scope it to one of your sites. |
+
 ## inspect_page
 
 **Cost:** Free · read-only
@@ -358,11 +447,11 @@ Opens a public web page in a real browser and lists what a video could point its
 
 **Cost:** Free · read-only
 
-Your PRIVATE bank: every image and clip this account generated, uploaded or captured, newest first, with its id, URL, brief and tags. list_commons_assets only shows what other people shared, so anything you generated yourself was invisible. Reuse one by putting its id in an image scene as data.asset_id — a clip resolves to clipUrl by itself, and a URL still works. Reusing costs no credit and generates nothing.
+Your PRIVATE bank: every image, clip and audio file this account generated, uploaded or captured, newest first, with its id, URL, brief and tags. Reuse a picture by putting its id in an image scene as data.asset_id (a clip resolves to clipUrl by itself); an audio asset is a film's music as "asset:<id>". Reusing costs no credit.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `kind` | `image` · `video` |  | Only images, or only clips. |
+| `kind` | `image` · `video` · `audio` |  | Only images, clips, or uploaded audio. |
 | `q` | string |  | A word to find in the brief or the tags. |
 | `character` | string |  | Only assets generated for this character. |
 | `site_url` | string |  | Only assets attached to this site. |
@@ -426,6 +515,31 @@ List animations, motions, visuals and chart types. The catalogue of what a scene
 
 _No parameters._
 
+## list_objects
+
+**Cost:** Free · read-only
+
+The reusable objects on this account, with reference images, kind and metadata (price, brand, sku).
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `kind` | `product` · `bag` · `watch` · `logo` · `packaging` · `place` · `vehicle` · `ui_screen` · `other` |  | Only this kind. |
+| `q` | string |  | A word in the name or description. |
+| `site_url` | string |  | Scope it to one of your sites. |
+
+## list_scenes
+
+**Cost:** Free · read-only
+
+Saved scenes, newest first: name, id, visual, aspect, whether footage is kept, the {{placeholders}} each needs as params, and tags.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `q` | string |  | A word in the name, heading or narration. |
+| `tags` | array |  | Only scenes carrying every one of these tags. |
+| `site_url` | string |  | Scope it to one of your sites. |
+| `limit` | integer |  | At most this many, newest first (default 40). Range 1–200. |
+
 ## list_shows
 
 **Cost:** Account · read-only
@@ -460,11 +574,22 @@ Lists videos newest first with their status and, when finished, their links. Fil
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `status` | `any` · `queued` · `analyzing` · `scripting` · `recording` · `voicing` · `rendering` · `done` · `error` |  | Only videos in this state. Default `"any"`. |
+| `status` | `any` · `queued` · `analyzing` · `scripting` · `recording` · `voicing` · `rendering` · `held` · `done` · `error` |  | Only videos in this state. Default `"any"`. |
 | `query` | string |  | Matches part of the source URL or the title. |
 | `created_after` | string |  | ISO 8601 timestamp; only videos created after it. |
 | `cursor` | string |  | The next_cursor from a previous call. Opaque — pass it back unchanged. |
 | `limit` | integer |  | How many to return. Default `10`. Range 1–50. |
+
+## list_voices
+
+**Cost:** Free · read-only
+
+The narrator voices with measured pitch (band and median Hz) and a short sample in the chosen language where one exists (else sample_url is null). Every voice speaks every language.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `language` | `en` · `fr` · `es` · `de` · `it` · `pt` · `nl` |  | Language of the samples. Default `"en"`. |
+| `pitch` | `low` · `mid` · `high` |  | Only this pitch band. |
 
 ## preview_episode
 
@@ -508,6 +633,16 @@ Registers (or replaces) a connection by alias: the URL and, optionally, a creden
 | `secret` | string |  | A bearer token or API key sent as Authorization: Bearer. Stored encrypted, never returned, never in a format. |
 | `note` | string |  | What this server is, for the list. |
 
+## release_video
+
+**Cost:** Free
+
+Publishes a video its quality_gate held (status "held") as it is: status becomes done. Nothing is re-rendered.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `video_id` | string | yes | The held video. |
+
 ## rerender_video
 
 **Cost:** 40 credits · destructive
@@ -521,6 +656,7 @@ Produces a new film from the video's current storyboard, skipping the page analy
 | `idempotency_key` | string |  | A caller-chosen id for this request. Sending the same key again within 24 hours returns the same re-render instead of starting and charging a second time — use it if your client may retry. |
 | `captions_only` | boolean |  | true re-times the subtitles on the voice track the film already has and renders again — nothing is re-recorded, re-scripted or re-voiced, so only the caption timing changes. The first such resync after a paid render is free; the next one on the same render costs a render's credits. Use it when get_video's film has captions out of step with the voice. |
 | `target_seconds` | integer |  | Re-baseline how long this film is MEANT to be. The target a video was created with is often a guess made before any content existed; when the film has legitimately grown or shrunk since, set it to what it should be now rather than cutting to satisfy the old number. It changes what length_within_tolerance is measured against and is kept for later re-renders. It does not change the film — the narration is still what sets the length. Range 15–180. |
+| `quality_gate` | object |  | As on create_video, for this render. |
 
 ## run_show
 
@@ -533,6 +669,19 @@ Per episode started. Reads the show's feed (or the items given), skips every ite
 | `show_id` | string | yes | The show_id from create_show or list_shows. |
 | `confirm` | boolean |  | false (the default): a free preview of the episodes this run would make. true: make them, and on a held show, confirm it — from then on the scheduler runs it at its cadence. Default `false`. |
 | `items` | array |  | The items to make episodes from, for a manual show. A feed show ignores this and reads its feed. |
+
+## save_scene
+
+**Cost:** Free
+
+Saves a scene for reuse: narration, visual, data, style AND its footage and generated media (copied so deleting the film cannot break it). Reusing it — update_storyboard add_scene_from_library, create_animation from_library — films and generates nothing, so no AI credit. Write {{placeholders}} in its narration or data first to fill them per use.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `video_id` | string | yes | The video the scene is in. |
+| `scene_id` | string | yes | The scene, from get_storyboard. |
+| `name` | string | yes | A name to reuse it by. The same name replaces the earlier entry. |
+| `tags` | array |  | Tags to find it by. |
 
 ## update_format
 
@@ -551,7 +700,7 @@ Changes any of a format's template fields. The result is a NEW version — the p
 | `target_seconds` | integer |  | How long the film should be. Here it is a CHECK, not a setting: you wrote the narration and a narrated scene lasts exactly as long as its words, so nothing can stretch or shrink it. If the script misses this by more than 15%, the call is refused before any credit moves, and the refusal says how many words 45 seconds actually carries and how many to cut or add. Omit it and any length between 15 and 180 s is accepted. Range 15–180. |
 | `tone` | string |  | Delivery of the narration, up to 80 characters — e.g. energetic, calm, authoritative, or a short direction like "dry and deadpan, like a friend telling a story". |
 | `voice` | `auto` · `Kore` · `Zephyr` · `Puck` · `Charon` · `Aoede` · `Fenrir` · `Leda` · `Orus` · `Callirrhoe` · `Achird` · `Sulafat` · `Sadachbia` |  | Voice character (every voice is multilingual). auto picks a voice that fits the goal and tone and differs from the site's previous films; name one to fix it. |
-| `music` | `auto` · `none` · `uplift` · `corporate` · `chill` · `cinematic` · `ambient` · `pulse` · `playful` · `warm` |  | Background music bed, or "none". auto fits the goal and differs from the site's previous films; name one to fix it. Only the listed ids — these are tracks, not a style prompt. |
+| `music` | string |  | Background music bed, or "none". auto fits the goal and differs from the site's previous films; name one to fix it, or "asset:<id>" for an audio file from upload_asset. |
 | `subtitles` | boolean |  | Burn captions into the picture and emit a .vtt sidecar. |
 | `intro` | boolean |  | Include the branded opening title card. |
 | `outro` | boolean |  | Include the closing call-to-action card. |
@@ -562,6 +711,23 @@ Changes any of a format's template fields. The result is a NEW version — the p
 | `scenes` | array |  | animation formats: the scene templates, as create_animation takes scenes, with the placeholders in any string. |
 | `programme` | object |  | animation formats: the programme instead of plain scenes. {beats: [...], resolvers: [...], computed: {...}, requires_beats: [...], reject_if: [...]}. A beat is a scene (visual, motion, mood, heading, caption, narration, data) plus beat (one of cold_open, title, identity, context, trend, breakdown, outlier, comparison, caveats, verdict, sources), when (an expression; dropped when not true) and for_each (an expression yielding a list; repeated per element). Any string may carry {{ expressions }} — dotted paths and filters such as money(EUR,M), percent(0), say, sort_by(year), take_last(6), map({label: year, value: total}) — and any field may be {"$bind": "expression"} to receive a real number, list or object (a chart's points). Resolvers fetch data before compiling: {id, call: {mcp: alias, tool, input} | {http: url, query, body}, select, required, on_missing: skip_episode | drop_beats(a,b) | use_default | fail_loud, cache: "30d"}; each reads what the ones before it bound. Every numeral in a narration or caption must come from an expression: a figure typed by hand fails validation by beat. validate_format checks the template; preview_episode runs the resolvers and compiles a real episode for free. |
 | `routing` | object |  | How episodes are made: {planner?: flash|pro, footage?: prefer-recorded|record-fresh}. flash is the benched default (it beat every larger model under the real prompt); pro is a deliberate choice. prefer-recorded uses the site's banked flow recordings when they match a scene; record-fresh films every episode anew, for a subject that changes each time. |
+
+## update_object
+
+**Cost:** Free
+
+Changes only the fields sent. Media already generated with it is kept until a scene's description changes.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `name` | string | yes | The object to change. |
+| `new_name` | string |  | Rename it. |
+| `kind` | `product` · `bag` · `watch` · `logo` · `packaging` · `place` · `vehicle` · `ui_screen` · `other` |  | What it is. |
+| `refs` | array |  | Replace the references. |
+| `description` | string | null |  | One line added to every prompt that names it. |
+| `site_url` | string |  | Scope it to one of your sites. |
+| `source_url` | string |  | Where it comes from (a product page). Attribution only. |
+| `metadata` | object |  | Merged into the metadata; a null value clears that key. |
 
 ## update_show
 
@@ -589,12 +755,25 @@ Changes a show's switch, cadence, caps or name, or moves it to another format or
 
 **Cost:** Free · destructive
 
-Changes a video's storyboard: rewrite what a scene says, change its caption or heading, redraw it as a different visual, correct its data, tint it, point its camera at a specific element of the page (set_shot: a selector from inspect_page with a click, typing, a hover or a spotlight — checked on the live page before the edit is accepted), add a scene, copy one, trim, remove or reorder them, or change the voice or background music. 18 operations, listed on the operations parameter. Costs no credit and does not re-render — call rerender_video to produce a new film from the edited storyboard. Every call is snapshotted, so an edit can be undone in the web editor.
+Changes a video's storyboard: rewrite what a scene says, change its caption or heading, redraw it as a different visual, correct its data, tint it, point its camera at a specific element of the page (set_shot: a selector from inspect_page with a click, typing, a hover or a spotlight — checked on the live page before the edit is accepted), add a scene, copy one, trim, remove or reorder them, or change the voice or background music. 19 operations, listed on the operations parameter. Costs no credit and does not re-render — call rerender_video to produce a new film from the edited storyboard. Every call is snapshotted, so an edit can be undone in the web editor.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `video_id` | string | yes | The video to edit. Its scene ids come from get_storyboard. |
-| `operations` | array | yes | The changes to apply, in order. All are validated before any is written, so a bad batch changes nothing and nothing is charged; correcting a wrong figure is set_data plus one rerender_video, not a new video. Up to 20 per call. A name followed by (arguments) — a trailing ? marks an optional one. rewrite_narration(scene_id, narration) — Replace what a scene says. The film is as long as its voiceover, so this changes the length. set_caption(scene_id, caption) — Set or clear the on-screen caption of a scene. set_heading(scene_id, heading) — Rename a scene. The heading is the editor's label for it, not on-screen text. trim_scene(scene_id, duration_seconds) — Set how long a scene holds. Only a SILENT scene obeys this — a narrated one is as long as its narration. set_mood(scene_id, mood) — Tint a scene: a problem scene gets a red vignette and a little camera shake, a win scene a warm glow. set_shot(scene_id, selector, action?, text?, page_url?) — Only for a video made from a URL — there is nothing to film in one made from data. Point the camera: make a scene a screen recording of a specific element — a click on it, typing into it, a hover, a spotlight — or of the section around it, optionally on another page of the same site. THE BEST SHOT ON MOST PAGES IS ONE THAT DOES SOMETHING: click the call to action and let the page answer, or type a real query into the search box. A frame the camera merely drifts across is a screenshot that took longer. The selector is checked on the live page before the edit is accepted, which proves it matches SOMETHING, not that it matches what you meant: a selector hitting several elements films the first one in the page, and the result says so. remove_scene(scene_id) — Delete a scene. A storyboard must keep at least one. add_scene(heading, narration, caption?, selector?, shot_action?, shot_text?, page_url?, visual?, motion?, data?, mood?, duration_seconds?, after_scene_id?, before_scene_id?) — Insert a new scene. Without a visual the scene is a screen recording of the video's page, so it needs a video that filmed one, and it is framed by default, which on a dense page means a wide shot of unreadable text; point it somewhere with set_shot once get_storyboard has given you its scene_id. With a visual, it needs that visual's own fields in `data` (list_motions says which): a bignum with no number, or a grid with no cells, degrades to a plain card carrying whatever text it could find. duplicate_scene(scene_id) — Copy a scene, words, visual, data and all, straight after the original. Its heading gains a "copy" suffix, and it carries no recorded footage — the copy is filmed or drawn afresh on the next render. reorder_scenes(scene_ids) — Put the scenes in a new order. Must list every scene exactly once. set_visual(scene_id, visual, data?) — Change how a scene is drawn. Its content is carried over unless you send new data. set_transition(scene_id, transition, duration_ms?) — How a scene ARRIVES — the cut itself, as opposed to set_motion, which is how its contents animate once it is there. Only for a DRAWN scene: a screen recording has no card to hang an arrival on and the edit is refused, so call set_visual first if you want one there. list_motions publishes all eight with what each is for. The effect plays inside the scene's own window, so choosing one never changes the film's length or pushes the voice off the pictures. set_motion(scene_id, motion) — Change a scene's entrance animation. A motion from the wrong family is refused, not swapped. set_inset(scene_id, generate, character?, model?, corner?, shape?, size?, mute?) — A PRESENTER IN THE CORNER: a generated clip of a person drawn OVER this scene — the recording or the card keeps the frame, as in any screen tutorial. Works on a filmed scene and a drawn one. Costs one clip, refunded if it fails; the scene then plays without the presenter. generate: null removes it. set_data(scene_id, data) — Correct a scene's content without touching its visual or animation. One wrong figure costs no new video. Send the WHOLE content: it replaces what you wrote rather than merging into it — get_storyboard's `data` is exactly what to send back with your correction applied. What the composer added (`derived`) is kept either way. set_voice(voice) — Change the narrator for the whole video. set_music(music) — Change the background music for the whole video. set_look(look, caption_style?) — Change the whole film's LOOK — captions, cutting rhythm, sound cues and motion register together. list_video_options publishes the five with a note each. Applied on the next render; it never moves the timeline. |
+| `operations` | array | yes | The changes to apply, in order. All are validated before any is written, so a bad batch changes nothing and nothing is charged; correcting a wrong figure is set_data plus one rerender_video, not a new video. Up to 20 per call. A name followed by (arguments) — a trailing ? marks an optional one. rewrite_narration(scene_id, narration) — Replace what a scene says. The film is as long as its voiceover, so this changes the length. set_caption(scene_id, caption) — Set or clear the on-screen caption of a scene. set_heading(scene_id, heading) — Rename a scene. The heading is the editor's label for it, not on-screen text. trim_scene(scene_id, duration_seconds) — Set how long a scene holds. Only a SILENT scene obeys this — a narrated one is as long as its narration. set_mood(scene_id, mood) — Tint a scene: a problem scene gets a red vignette and a little camera shake, a win scene a warm glow. set_shot(scene_id, selector, action?, text?, page_url?) — Only for a video made from a URL — there is nothing to film in one made from data. Point the camera: make a scene a screen recording of a specific element — a click on it, typing into it, a hover, a spotlight — or of the section around it, optionally on another page of the same site. THE BEST SHOT ON MOST PAGES IS ONE THAT DOES SOMETHING: click the call to action and let the page answer, or type a real query into the search box. A frame the camera merely drifts across is a screenshot that took longer. The selector is checked on the live page before the edit is accepted, which proves it matches SOMETHING, not that it matches what you meant: a selector hitting several elements films the first one in the page, and the result says so. remove_scene(scene_id) — Delete a scene. A storyboard must keep at least one. add_scene(heading, narration, caption?, selector?, shot_action?, shot_text?, page_url?, visual?, motion?, data?, mood?, duration_seconds?, after_scene_id?, before_scene_id?) — Insert a new scene. Without a visual the scene is a screen recording of the video's page, so it needs a video that filmed one, and it is framed by default, which on a dense page means a wide shot of unreadable text; point it somewhere with set_shot once get_storyboard has given you its scene_id. With a visual, it needs that visual's own fields in `data` (list_motions says which): a bignum with no number, or a grid with no cells, degrades to a plain card carrying whatever text it could find. duplicate_scene(scene_id) — Copy a scene straight after the original — words, visual, data AND its footage or generated media, so nothing is filmed or generated again. set_shot on the copy films a new take. add_scene_from_library(scene, params?, after_scene_id?, before_scene_id?) — Insert a saved scene (list_scenes) with its footage and generated media — no AI cost. params fills its {{placeholders}}. reorder_scenes(scene_ids) — Put the scenes in a new order. Must list every scene exactly once. set_visual(scene_id, visual, data?) — Change how a scene is drawn. Its content is carried over unless you send new data. set_transition(scene_id, transition, duration_ms?) — How a scene ARRIVES — the cut itself, as opposed to set_motion, which is how its contents animate once it is there. Only for a DRAWN scene: a screen recording has no card to hang an arrival on and the edit is refused, so call set_visual first if you want one there. list_motions publishes all eight with what each is for. The effect plays inside the scene's own window, so choosing one never changes the film's length or pushes the voice off the pictures. set_motion(scene_id, motion) — Change a scene's entrance animation. A motion from the wrong family is refused, not swapped. set_inset(scene_id, generate, character?, objects?, model?, corner?, shape?, size?, mute?) — A PRESENTER IN THE CORNER: a generated clip of a person drawn OVER this scene — the recording or the card keeps the frame, as in any screen tutorial. Works on a filmed scene and a drawn one. Costs one clip, refunded if it fails; the scene then plays without the presenter. generate: null removes it. set_data(scene_id, data) — Correct a scene's content without touching its visual or animation. One wrong figure costs no new video. Send the WHOLE content: it replaces what you wrote rather than merging into it — get_storyboard's `data` is exactly what to send back with your correction applied. What the composer added (`derived`) is kept either way. set_voice(voice) — Change the narrator for the whole video. set_music(music) — Change the background music for the whole video. set_look(look, caption_style?) — Change the whole film's LOOK — captions, cutting rhythm, sound cues and motion register together. list_video_options publishes the five with a note each. Applied on the next render; it never moves the timeline. |
+
+## upload_asset
+
+**Cost:** Free
+
+Fetches a public https file into your private bank: logo, product photo, footage or music bed. The type is read from the bytes, video becomes H.264, identical bytes return the existing asset. A picture or clip goes in an image scene as data.asset_id; audio is a film's music as "asset:<id>" (create_video, create_animation, set_music) and loops under a longer film.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `url` | string | yes | Public https URL of the file. |
+| `kind` | `image` · `video` · `audio` | yes | image ≤ 20 MB, video ≤ 200 MB and 60 s, audio ≤ 50 MB. |
+| `name` | string |  | A label to find it again. |
+| `site_url` | string |  | Attach an image or clip to one of your sites. |
 
 ## validate_format
 
@@ -612,7 +791,7 @@ Compiles the template against a sample item without touching the database or any
 | `target_seconds` | integer |  | How long the film should be. Here it is a CHECK, not a setting: you wrote the narration and a narrated scene lasts exactly as long as its words, so nothing can stretch or shrink it. If the script misses this by more than 15%, the call is refused before any credit moves, and the refusal says how many words 45 seconds actually carries and how many to cut or add. Omit it and any length between 15 and 180 s is accepted. Range 15–180. |
 | `tone` | string |  | Delivery of the narration, up to 80 characters — e.g. energetic, calm, authoritative, or a short direction like "dry and deadpan, like a friend telling a story". Default `"energetic"`. |
 | `voice` | `auto` · `Kore` · `Zephyr` · `Puck` · `Charon` · `Aoede` · `Fenrir` · `Leda` · `Orus` · `Callirrhoe` · `Achird` · `Sulafat` · `Sadachbia` |  | Voice character (every voice is multilingual). auto picks a voice that fits the goal and tone and differs from the site's previous films; name one to fix it. Default `"auto"`. |
-| `music` | `auto` · `none` · `uplift` · `corporate` · `chill` · `cinematic` · `ambient` · `pulse` · `playful` · `warm` |  | Background music bed, or "none". auto fits the goal and differs from the site's previous films; name one to fix it. Only the listed ids — these are tracks, not a style prompt. Default `"auto"`. |
+| `music` | string |  | Background music bed, or "none". auto fits the goal and differs from the site's previous films; name one to fix it, or "asset:<id>" for an audio file from upload_asset. Default `"auto"`. |
 | `subtitles` | boolean |  | Burn captions into the picture and emit a .vtt sidecar. Default `true`. |
 | `intro` | boolean |  | Include the branded opening title card. Default `true`. |
 | `outro` | boolean |  | Include the closing call-to-action card. Default `true`. |
