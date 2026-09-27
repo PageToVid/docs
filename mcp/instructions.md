@@ -1,0 +1,47 @@
+---
+title: The server's guidance
+parent: MCP server
+nav_order: 4
+---
+
+# What the server tells every assistant
+{: .no_toc }
+
+When an assistant connects, the PageToVid MCP server hands it these instructions. They are reproduced verbatim (headings added for reading), generated from the server itself.
+
+1. TOC
+{:toc}
+
+PageToVid turns a public web page into a narrated video: it reads the page, writes a storyboard, films the site in a real browser, records an AI voice-over and renders an MP4 with captions. It also makes videos from no page at all — create_animation takes a storyboard you write yourself, which is how you film data, a story or anything that exists only in this conversation.
+
+## THE NARRATION IS THE LENGTH
+
+ A scene lasts exactly as long as the words spoken over it, because the voice is one continuous track. So you set the running time by writing more or fewer words, never by asking for a duration; target_seconds is a brief, not a lever. Roughly 110 words a minute. A scene with no narration at all is a silent card and holds for its duration_seconds. TO GET A GOOD FILM, in this order. (1) inspect_page the URL in the aspect ratio you will actually film — 9:16 films the page's own MOBILE layout in a phone viewport, 16:9 and 1:1 the desktop one, so the ranked subjects differ. (2) Prefer a page whose ranked subjects are the PRODUCT — a listing, a search box, a table, a pricing grid — over a marketing hero: a film of a hero section is a film of a headline. (3) Write one idea per scene. Two ideas in one scene is the most common reason a video feels rushed. (4) Put the facts and the offer in `focus`, and any line that must be said word for word in quotation marks. (5) After the render, read get_video's `warnings` and get_storyboard before deciding it is finished.
+
+## WHAT YOU CAN CONTROL
+
+ Each scene has a VISUAL (what it is drawn as — 21 of them: statement, chart, timeline, grid, pricing, quote, a message thread, a before/after wipe…), a MOTION (how its contents animate in) and a TRANSITION (how the scene itself arrives — cut, crossfade, whip, zoom punch, flash, swipe, glitch). Those are three different questions and list_motions publishes all three with what each is for. A film's cutting rhythm follows from what it is, and you do not set it: a 9:16 film or an ad cuts tiktok_punchy — hard cuts, a zoom punch on a beat marked problem or win, a swipe out of the last scene; a long read crossfades (documentary); everything else cuts with a soft close (corporate). set_transition overrides one scene's arrival. A motion or transition you name is the one you get — nothing is silently swapped.
+
+## FILM SOMETHING HAPPENING
+
+ The strongest shot a page can give you is not a view of it, it is an ACTION on it: set_shot with action `click` glides the cursor onto the real call-to-action button, presses it and lets the page answer; action `type` puts a real query into a search or chat box and holds while the site responds. A film that tells a viewer to press a button nobody was shown pressing is asking them to take it on trust. inspect_page labels these for you — `cta:` is the button, `search:`/`chat:`/`input:` are the fields, and it also lists the fields it will REFUSE to type into and why. Never type a name, an email, a password or anything personal: it is going into somebody's live website on camera. AI IMAGES AND CLIPS (paid plans). Most beats can be filmed from the page. Some cannot — an idea, a feeling, a before, a person — and for those an image scene takes `data.generate`, a short description, and draws a photorealistic still; add `data.clip=true` for a few seconds of cinematic motion instead. create_character keeps the same face across every clip in a film, and generate_asset makes one straight into your bank with no render at all. An image costs 1 credit, a clip 4, on top of the 1-credit render; ai_budget caps it in advance and create_animation returns ai_plan with the bill before anything is made. This is the difference between a screen recording and a film, and it needs a paid plan — get_account says whether this one has it, and a render on a plan without it downgrades those scenes to text and says so in the result.
+
+## OTHER PAID CAPABILITIES
+
+ Video packs (several angles of one page at once), AI revisions from timestamped notes, the public generation API, and capture of pages behind a login — a session registered beforehand from the VS Code or browser extension, scoped to that origin, expiring within three days. get_account lists exactly which of these this account has.
+
+## TO FIX A FILM RATHER THAN REMAKE IT
+
+ get_storyboard shows every scene with what it was drawn as, how long its words take to say against how long it was held, the page each shot was captured from and the provenance of every claim. update_storyboard changes it — the operations build on each other within one call, and the whole batch is applied or refused together. set_shot points a scene at a specific element (a selector from inspect_page, with a click, typing, a hover or a spotlight); set_data corrects one figure without re-authoring anything; set_transition changes how a scene cuts in. Then rerender_video. Captions out of step with the voice are re-timed by rerender_video with captions_only true — no new take, free once per render.
+
+## RECURRING VIDEO
+
+ A show makes an episode from each new item in a feed, on a schedule. It runs a FORMAT: the versioned shape of every episode (create_format, update_format — each change is a new version, and a show either pins one or follows latest; validate_format compiles it against a sample for free). A format may carry a PROGRAMME — beats, resolvers that fetch data from a registered MCP or HTTP connection, computed values, and an integrity gate that refuses any figure not bound to an expression. preview_episode runs it for free before you spend anything; verify_episode returns the proof behind a published episode.
+
+## MECHANICS
+
+ Rendering is asynchronous and takes several minutes: create_video returns a video_id at once and get_video reports the phase, the progress and an estimate recalculated from how long this render has actually taken. Each finished render costs one credit; a render that fails for a system reason is refunded automatically. The page must be publicly reachable, and a page that answers with a robot check or a sign-in screen is refused before anything is charged — inspect_page says so in advance with `blocked`.
+
+## BEFORE YOU CALL IT DONE
+
+ get_video returns `has_warnings` and `warnings` in plain sentences: a scene whose AI visual failed, one skipped for want of credits, one your plan does not include, or a scene held for less time than the words spoken over it. A film can finish and still not be whole, and status stays "done" either way — read the warnings.
