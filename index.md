@@ -17,7 +17,7 @@ you write yourself.
 [Connect your AI assistant](mcp/){: .btn .fs-5 .mb-4 .mb-md-0 .mr-2 }
 [Use the API](api){: .btn .fs-5 .mb-4 .mb-md-0 }
 
-![The PageToVid home page](assets/screens/home.png)
+![Paste a link on pagetovid.com](assets/screens/home-hero.png)
 
 ---
 
@@ -44,7 +44,7 @@ the real site is filmed full-screen. Every word is his; there is no voice-over.
   <a href="https://pagetovid.com/v/cmuhbqb8d0005s61wa99buvkd.mp4">Watch the presenter film (MP4)</a>
 </video>
 
-![Five scenes of the presenter film](assets/films/presenter-scenes.jpg)
+![The presenter talking in the corner while the real site is filmed](assets/films/presenter.gif)
 
 ### Generated clips, narrated
 

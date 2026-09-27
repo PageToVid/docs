@@ -7,8 +7,8 @@ description: "Make your first PageToVid film in the web app."
 # Getting started
 {: .no_toc }
 
-Your first film in about three minutes, in the web app. No account is needed to see the product;
-a free account makes three films per website.
+Your first film in about three minutes, in the web app. A free account makes three films a month,
+and a website's free allowance is three films across all free accounts.
 {: .fs-5 .fw-300 }
 
 1. TOC
@@ -20,11 +20,11 @@ Open [pagetovid.com](https://pagetovid.com), paste the address of any **public**
 **Continue**. PageToVid opens the page in a real browser, reads it, and writes a storyboard: one
 idea per scene, each either filmed on the site or drawn as a motion graphic.
 
-![Paste a link on the home page](assets/screens/home.png)
+![Paste a link and press Continue](assets/screens/home-hero.png)
 
-On a phone the same page works the same way:
+It works the same way on a phone:
 
-![The home page on mobile](assets/screens/home-mobile.png){: width="320" }
+![PageToVid on a phone](assets/screens/home-mobile.png){: width="300" }
 
 {: .tip }
 Point it at the page that shows the **product** — a listing, a search box, a pricing table — rather
@@ -40,9 +40,10 @@ Pick the format before you start, because it changes what is filmed:
 | **9:16** | the site's own *mobile* layout, in a phone viewport | Reels, Shorts, TikTok |
 | **1:1** | the desktop layout, square | social feeds |
 
-A **look** sets the captions, the cutting rhythm, the sound cues and the motion register together —
-*clean, bold, editorial, playful* or *tech*. Every setting it implies can be changed on its own later
-in the editor's **Style** panel.
+A **look** sets the captions, the cutting rhythm, the sound cues and the motion register together:
+`clean`, `bold`, `editorial`, `playful` or `tech`. Every setting it implies can be changed on its own
+later in the editor's **Style** panel: caption style and animation, colour grade, sound level, the
+cursor, the callout drawn over a click, what a click does to the picture, and the closing card.
 
 ## 3. Watch it render, then read it
 
@@ -51,42 +52,38 @@ Rendering takes a few minutes. When it finishes, the project page plays the film
 not be whole — a generated visual that failed, a scene held for less time than its words — so read
 the warnings before you publish.
 
-Every film gets a public page you can share, embed, or download as an MP4:
-
-![A film's public watch page](assets/screens/watch-sam.png)
+Every film gets a public page with a player, a share bar, an embed code and an MP4 download, at
+`https://pagetovid.com/watch/<title>-<id>`.
 
 ## 4. Edit without starting over
 
 In the editor you can rewrite what a scene says, change how it is drawn, re-point the camera at a
-specific element of the page, reorder, trim, and change the voice or music. The live preview updates
-as you type; **Render** makes the new film from the edited storyboard (one credit).
+specific element of the page, reorder, trim, and change the voice or the music. The live preview
+updates as you type; **Render** makes the new film from the edited storyboard for one credit.
+
+The scenes can be drawn as any of the animation templates, each previewed live in the
+[catalogue](https://pagetovid.com/animations):
+
+![Three of the animation templates](assets/screens/animations-grid.png)
 
 ## 5. Pages behind a login
 
 Dashboards and apps behind a sign-in are filmed through the
-[browser extension](https://pagetovid.com/extension): you sign in yourself, the extension registers
-a capture session for that one site, and it expires within three days.
+[browser extension](https://pagetovid.com/extension) or the VS Code extension: you sign in yourself,
+the extension registers a capture session for that one site, and it expires within three days. No
+password ever reaches PageToVid.
 
-![The browser extension page](assets/screens/extension.png)
+## Plans and credits
 
-## A quick tour
+One credit is one rendered film. On paid plans a generated AI image costs one credit and a generated
+clip four; a render that fails for a system reason is refunded automatically.
 
-**71 animation templates**, each previewable live — the visuals a scene can be drawn as:
+| Plan | Monthly | Billed yearly | Credits a month | For |
+|---|---|---|---|---|
+| **Free** | $0 | — | 3 | trying it, no card needed |
+| **Starter** | $19 | $190 | 25 | solo creators and founders |
+| **Pro** | $49 | $490 | 75 | marketers and small teams |
+| **Scale** | $99 | $990 | 200 | agencies and high volume |
 
-![The animation catalogue](assets/screens/animations.png)
-
-**Features** — everything a film can carry, from kinetic captions to AI clips:
-
-![Features](assets/screens/features.png)
-
-**Use cases** — films made for SaaS, local businesses, e-commerce and more:
-
-![Use cases](assets/screens/use-cases.png)
-
-## Pricing in one line
-
-One credit is one rendered film. Generated AI images cost one credit and generated clips four, on
-paid plans; a render that fails for a system reason is refunded automatically.
-[See the plans](https://pagetovid.com/pricing).
-
-![Plans](assets/screens/pricing.png)
+One-off credit packs: 1 video $3.90 · 10 credits $29 · 50 credits $119 · 200 credits $399.
+Current prices and features: [pagetovid.com/pricing](https://pagetovid.com/pricing).

@@ -93,4 +93,4 @@ These are enforced by the renderer and covered by tests, not left to chance:
 - **Never stretched**: the clip keeps its own shape; a circle crops a square so a face is not squeezed.
 - **Never cut off mid-sentence** in a scene with no narration.
 
-![Five scenes: the presenter keeps clear of the field, the button and the plan cards](../assets/films/presenter-scenes.jpg)
+![The presenter keeps clear of the field being typed into](../assets/films/presenter.gif)

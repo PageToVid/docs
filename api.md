@@ -11,8 +11,6 @@ One POST creates and renders a video; one GET reports progress and returns the f
 interactive reference lives on [pagetovid.com/developers](https://pagetovid.com/developers).
 {: .fs-5 .fw-300 }
 
-![The API reference on pagetovid.com](assets/screens/developers.png)
-
 1. TOC
 {:toc}
 

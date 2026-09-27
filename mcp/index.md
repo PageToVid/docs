@@ -13,8 +13,6 @@ Ask your AI assistant for a video in plain words — "make a 30-second ad for st
 **Endpoint:** `https://pagetovid.com/mcp` · Streamable HTTP · OAuth sign-in (or an API key for headless agents).
 {: .fs-5 }
 
-![The MCP page on pagetovid.com](../assets/screens/mcp.png)
-
 1. TOC
 {:toc}
 
