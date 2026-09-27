@@ -21,7 +21,7 @@ anything.
 |---|---|
 | A rendered film — script, real-browser filming, voice-over, captions, music | **40** |
 | An AI still (house image model) | **40** |
-| The house AI clip — Veo 3.1 Fast, 8 seconds, 720p, with sound | **160** |
+| The house AI clip — Veo 3.1 Fast, 8 seconds, 720p, with sound | **311** |
 | A clip from a model you name | its price in the [model table](#clip-prices-by-model), per second at the resolution made |
 | Re-timing the captions of a finished film (`captions_only`) | free once per paid render, then 40 |
 | `list_models`, `quote_cost`, `inspect_page`, `get_storyboard` and every other read | free |
@@ -39,9 +39,16 @@ really costs instead of being rounded to whole films.
 | **Free** | $0 | — | 120 once, at sign-up | 3 | trying it, no card needed |
 | **Starter** | $19 | $190 | 1,000 a month | 25 a month | solo creators and founders |
 | **Pro** | $49 | $490 | 3,000 a month | 75 a month | marketers and small teams |
-| **Scale** | $99 | $990 | 8,000 a month | 200 a month | agencies and high volume |
+| **Scale** | $99 | $990 | 8,000 a month | 200 a month | growing teams and high volume |
+| **Business** | $299 | $2,990 | 30,000 a month | 750 a month | brands producing every week |
+| **Agency** | $999 | $9,990 | 110,000 a month | 2,750 a month | agencies running many brands |
+| **Enterprise** | from $2,500 | — | custom | custom | custom volume, invoicing, a named contact |
 
 - **Yearly** billing is ten times the monthly price — two months free.
+- **Business and Agency** are the same product as Scale at a lower price per film: about $0.40
+  and $0.36 a film monthly, $0.33 and $0.30 billed yearly.
+- **Enterprise** starts at $2,500 a month for custom volume, invoicing and a named contact:
+  write to [hello@pagetovid.com](mailto:hello@pagetovid.com).
 - **Free** films carry a "Made with PageToVid" watermark, and a website's free allowance is
   **three films across all free accounts**, however many accounts ask for it.
 - **AI stills and clips are a paid-plan feature.** On a free plan a scene that asks for one is drawn
@@ -74,14 +81,14 @@ render                                  40
                                         40 credits
 ```
 
-**2. A film with two AI stills and one house clip — 280 credits.**
+**2. A film with two AI stills and one house clip — 431 credits.**
 
 ```text
 render                                  40
 AI still × 2          (40 each)         80
-house clip × 1        Veo 3.1 Fast     160
+house clip × 1        Veo 3.1 Fast     311
                                       ────
-                                       280 credits
+                                       431 credits
 ```
 
 **3. A film with one Seedance 2.0 clip, 8 s at 720p — 506 credits.** A named model is priced per
@@ -107,7 +114,7 @@ regenerated on every price change. It is not a second copy of the prices.
 
 | Model | Name | Kind | Credits per second | Example |
 |---|---|---|---|---|
-| `house` (default) | House clip (Veo 3.1 Fast) | video | flat | 160 (8 s at 720p) |
+| `house` (default) | House clip (Veo 3.1 Fast) | video | flat | 311 (8 s at 720p) |
 | `seedance-2.0-mini` | Seedance 2.0 Mini | video | 480p: 16/s · 720p: 31/s | 249 (8 s at 720p) |
 | `seedance-2.0-fast` | Seedance 2.0 Fast | video | 480p: 23/s · 720p: 47/s | 373 (8 s at 720p) |
 | `seedance-2.0` | Seedance 2.0 | video | 480p: 27/s · 720p: 58/s · 1080p: 144/s · 4k: 303/s | 466 (8 s at 720p) |
@@ -122,8 +129,9 @@ regenerated on every price change. It is not a second copy of the prices.
 
 A model in this table is not necessarily available to your account at this moment: `list_models`
 returns only what you can use now, and with `include_unavailable: true` also lists the others with
-the reason. The house clip is a flat 160 credits because it is always the same shot, 8 seconds at
-720p; naming `veo-3.1-fast` lets you choose the length and resolution, and prices it per second.
+the reason. The house clip is a flat 311 credits — what `veo-3.1-fast` costs for the same shot, 8 seconds at
+720p — and it is always that shot; naming `veo-3.1-fast` lets you choose the length and resolution,
+and prices it per second.
 
 ## Check a price first
 

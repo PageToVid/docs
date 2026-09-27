@@ -76,7 +76,7 @@ password ever reaches PageToVid.
 ## Plans and credits
 
 A rendered film costs **40 credits**. On paid plans an AI still costs 40 credits and the house AI
-clip 160; a clip from a model you name is priced from what it costs — see
+clip 311; a clip from a model you name is priced from what it costs — see
 [Credits & pricing](pricing) for the full table and worked examples. A render that fails is refunded
 in full, AI visuals included.
 
@@ -85,7 +85,12 @@ in full, AI visuals included.
 | **Free** | $0 | — | 120 once, at sign-up | 3 | trying it, no card needed |
 | **Starter** | $19 | $190 | 1,000 | 25 | solo creators and founders |
 | **Pro** | $49 | $490 | 3,000 | 75 | marketers and small teams |
-| **Scale** | $99 | $990 | 8,000 | 200 | agencies and high volume |
+| **Scale** | $99 | $990 | 8,000 | 200 | growing teams and high volume |
+| **Business** | $299 | $2,990 | 30,000 | 750 | brands producing every week |
+| **Agency** | $999 | $9,990 | 110,000 | 2,750 | agencies running many brands |
+
+Beyond that, **Enterprise** starts at $2,500 a month with custom volume, invoicing and a named
+contact: write to [hello@pagetovid.com](mailto:hello@pagetovid.com).
 
 One-off credit packs, which never expire: 40 credits $3.90 · 400 credits $29 · 2,000 credits $119 ·
 8,000 credits $399. Current prices and features: [pagetovid.com/pricing](https://pagetovid.com/pricing).

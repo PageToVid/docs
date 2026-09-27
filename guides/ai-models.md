@@ -72,7 +72,7 @@ You do not set a clip's length or resolution — the request is planned from the
 
 ## Cost and failures
 
-The house clip costs 160 credits on top of the 40-credit render; a named model costs its price in the
+The house clip costs 311 credits on top of the 40-credit render; a named model costs its price in the
 [table](../pricing#clip-prices-by-model), per second at the resolution made. `quote_cost` prices any
 request first, for free, and refuses a length or resolution the model does not offer rather than
 changing it. A clip is refunded if it fails. The

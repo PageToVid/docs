@@ -86,7 +86,7 @@ never rejected.
 A presenter is one generated clip per scene, charged when it is made and refunded if it fails (the
 scene then plays without the presenter):
 
-- **House clip** (no `model`): 160 credits.
+- **House clip** (no `model`): 311 credits.
 - **A named model**: its per-second price at the model's **cheapest** resolution — a presenter is drawn
   at a quarter of the width, where the difference never shows. A 6-second presenter on
   `seedance-2.0-mini` is 94 credits.

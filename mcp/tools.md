@@ -19,7 +19,7 @@ Every tool the PageToVid MCP server publishes — **38 tools** — generated fro
 | [`create_video`](#create_video) | 40 credits | Starts a PageToVid render that turns a public web page URL into a narrated video with an AI voiceover, motion graphics and optional subtitles. |
 | [`detect_brand`](#detect_brand) | Free | Opens a public web page in a real browser and reads its design tokens from the live CSS: accent colours, heading typeface, light or dark ground and corner style |
 | [`fork_format`](#fork_format) | Free | A new format whose version 1 is the original's latest version, unpinned from its parent. |
-| [`generate_asset`](#generate_asset) | 40 or 160 credits | Generates a single AI still (40 credits) or house clip (160 credits) straight into your media bank and returns its id and URL — no project, no render, no minimu |
+| [`generate_asset`](#generate_asset) | 40 or 311 credits | Generates a single AI still (40 credits) or house clip (311 credits) straight into your media bank and returns its id and URL — no project, no render, no minimu |
 | [`generate_site_videos`](#generate_site_videos) | 40 credits | Per video started. |
 | [`get_account`](#get_account) | Account | CALL THIS FIRST. |
 | [`get_format`](#get_format) | Free | The format's current template, its version history and the shows that run it, with each show's pin. |
@@ -71,7 +71,7 @@ Make a video from data. Create, make, generate or render an animated video, expl
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `scenes` | array | yes | The scenes to draw, in order, 1-20. Every one is validated before anything is created or charged. The render costs 40 credit; on top of that each scene that generates an AI visual is metered — a still (data.generate) 40, a clip (data.clip) 160 — charged per visual, refunded if one fails, and skipped if you run out. get_account returns credit_costs. |
+| `scenes` | array | yes | The scenes to draw, in order, 1-20. Every one is validated before anything is created or charged. The render costs 40 credit; on top of that each scene that generates an AI visual is metered — a still (data.generate) 40, a clip (data.clip) 311 — charged per visual, refunded if one fails, and skipped if you run out. get_account returns credit_costs. |
 | `aspect_ratio` | `16:9` · `9:16` · `1:1` |  | 16:9 for web and YouTube, 9:16 for Reels/Shorts/TikTok, 1:1 for feeds. Default `"16:9"`. |
 | `language` | `en` · `fr` · `es` · `de` · `it` · `pt` · `nl` |  | Language of the voiceover and captions. Write the narration in this language. Default `"en"`. |
 | `voice` | `auto` · `Kore` · `Zephyr` · `Puck` · `Charon` · `Aoede` · `Fenrir` · `Leda` · `Orus` · `Callirrhoe` · `Achird` · `Sulafat` · `Sadachbia` |  | Voice character (every voice is multilingual). auto picks a voice that fits the goal and tone and differs from the site's previous films; name one to fix it. Default `"auto"`. |
@@ -96,7 +96,7 @@ Make a video from data. Create, make, generate or render an animated video, expl
 | `cursor_style` | `arrow` · `hand` · `dot` · `none` |  | The pointer the recording draws: the system arrow, a pointing hand, a presenter's dot, or none. |
 | `press_effect` | `punch` · `freeze` · `slowmo` · `none` |  | What the picture does when the cursor presses something: punch in, freeze for a beat, half speed, or nothing. |
 | `end_screen` | `cta` · `qr` · `social` · `logo` · `none` |  | The closing card: the call to action, the same with a scannable code to the film's page, the brand's handles, the mark alone, or no card. |
-| `ai_budget` | object |  | A ceiling on AI generation for this render, so a plan full of clips cannot surprise you with the bill. Generation is metered (40 credit a still, 160 a clip, on top of 40 for the render), and the response always returns ai_plan with what was asked for and the estimated cost. Omitted, nothing is capped. |
+| `ai_budget` | object |  | A ceiling on AI generation for this render, so a plan full of clips cannot surprise you with the bill. Generation is metered (40 credit a still, 311 a clip, on top of 40 for the render), and the response always returns ai_plan with what was asked for and the estimated cost. Omitted, nothing is capped. |
 | `idempotency_key` | string |  | A caller-chosen id for this request. Sending the same key again within 24 hours returns the original video instead of rendering and charging a second time — use it if your client may retry. |
 
 ## create_character
@@ -240,9 +240,9 @@ A new format whose version 1 is the original's latest version, unpinned from its
 
 ## generate_asset
 
-**Cost:** 40 or 160 credits
+**Cost:** 40 or 311 credits
 
-Generates a single AI still (40 credits) or house clip (160 credits) straight into your media bank and returns its id and URL — no project, no render, no minimum length. Use it for character reference portraits, or for any visual you want to see before it goes into a film. The charge is taken before the call and refunded automatically if the generation fails; identical output is de-duplicated, so a repeat does not cost a second file. Generation is a paid-plan feature.
+Generates a single AI still (40 credits) or house clip (311 credits) straight into your media bank and returns its id and URL — no project, no render, no minimum length. Use it for character reference portraits, or for any visual you want to see before it goes into a film. The charge is taken before the call and refunded automatically if the generation fails; identical output is de-duplicated, so a repeat does not cost a second file. Generation is a paid-plan feature.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|

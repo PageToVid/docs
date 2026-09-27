@@ -75,7 +75,7 @@ In a storyboard you write from scratch, the scene looks the same:
 ## Choosing a model per scene
 
 Leave out `model` and the scene gets the **house clip**: Veo 3.1 Fast, 8 seconds at 720p, with sound,
-for a flat 160 credits. Name a model and the scene is made by that model and charged its price, per
+for a flat 311 credits. Name a model and the scene is made by that model and charged its price, per
 second at the resolution it makes:
 
 ```json

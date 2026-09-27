@@ -88,7 +88,7 @@ crossfades.
 
 Most beats can be filmed from the page. For the ones that cannot — an idea, a feeling, a before, a
 person — an image scene takes `data.generate` (a still, 40 credits) or `data.generate` + `data.clip`
-(a few seconds of film: 160 credits for the house clip, or the named model's price). A line in quotation marks inside `generate` is spoken by the person
+(a few seconds of film: 311 credits for the house clip, or the named model's price). A line in quotation marks inside `generate` is spoken by the person
 in the clip. Keep one face across a film with a [character](presenter#1-create-the-character), and
 choose the model per scene — see [AI clips](ai-clips) and [AI models](ai-models).
 
