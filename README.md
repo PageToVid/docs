@@ -6,6 +6,8 @@ practices for [PageToVid](https://pagetovid.com).
 - Built by **GitHub Pages** from `main` (Jekyll, [Just the Docs](https://just-the-docs.com) theme).
 - `mcp/tools.md` and `mcp/instructions.md` are **generated** from the MCP server
   (`scripts/gen-mcp-docs.mts` in the product repository) — do not edit them by hand.
+- The model price table in `pricing.md` is **generated** from the price registry
+  (`scripts/pricing-table.mts` in the product repository) — regenerate it on every price change.
 - Screenshots live in `assets/screens/`, film frames in `assets/films/`.
 
 ## Preview locally

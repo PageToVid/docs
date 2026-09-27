@@ -7,8 +7,8 @@ description: "Make your first PageToVid film in the web app."
 # Getting started
 {: .no_toc }
 
-Your first film in about three minutes, in the web app. A free account makes three films a month,
-and a website's free allowance is three films across all free accounts.
+Your first film in about three minutes, in the web app. A free account starts with 120 credits —
+three films — and a website's free allowance is three films across all free accounts.
 {: .fs-5 .fw-300 }
 
 1. TOC
@@ -59,7 +59,7 @@ Every film gets a public page with a player, a share bar, an embed code and an M
 
 In the editor you can rewrite what a scene says, change how it is drawn, re-point the camera at a
 specific element of the page, reorder, trim, and change the voice or the music. The live preview
-updates as you type; **Render** makes the new film from the edited storyboard for one credit.
+updates as you type; **Render** makes the new film from the edited storyboard for 40 credits.
 
 The scenes can be drawn as any of the animation templates, each previewed live in the
 [catalogue](https://pagetovid.com/animations):
@@ -75,15 +75,17 @@ password ever reaches PageToVid.
 
 ## Plans and credits
 
-One credit is one rendered film. On paid plans a generated AI image costs one credit and a generated
-clip four; a render that fails for a system reason is refunded automatically.
+A rendered film costs **40 credits**. On paid plans an AI still costs 40 credits and the house AI
+clip 160; a clip from a model you name is priced from what it costs — see
+[Credits & pricing](pricing) for the full table and worked examples. A render that fails is refunded
+in full, AI visuals included.
 
-| Plan | Monthly | Billed yearly | Credits a month | For |
-|---|---|---|---|---|
-| **Free** | $0 | — | 3 | trying it, no card needed |
-| **Starter** | $19 | $190 | 25 | solo creators and founders |
-| **Pro** | $49 | $490 | 75 | marketers and small teams |
-| **Scale** | $99 | $990 | 200 | agencies and high volume |
+| Plan | Monthly | Billed yearly | Credits a month | Films a month | For |
+|---|---|---|---|---|---|
+| **Free** | $0 | — | 120 once, at sign-up | 3 | trying it, no card needed |
+| **Starter** | $19 | $190 | 1,000 | 25 | solo creators and founders |
+| **Pro** | $49 | $490 | 3,000 | 75 | marketers and small teams |
+| **Scale** | $99 | $990 | 8,000 | 200 | agencies and high volume |
 
-One-off credit packs: 1 video $3.90 · 10 credits $29 · 50 credits $119 · 200 credits $399.
-Current prices and features: [pagetovid.com/pricing](https://pagetovid.com/pricing).
+One-off credit packs, which never expire: 40 credits $3.90 · 400 credits $29 · 2,000 credits $119 ·
+8,000 credits $399. Current prices and features: [pagetovid.com/pricing](https://pagetovid.com/pricing).

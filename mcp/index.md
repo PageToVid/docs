@@ -116,7 +116,8 @@ A client that cannot run a browser sign-in (a CI job, a server-side agent) sends
 
 ## What to read next
 
-- [Tool reference](tools) — all 36 tools and every parameter, generated from the server.
+- [Tool reference](tools) — all 38 tools and every parameter, generated from the server.
 - [The server's own guidance](instructions) — what the server tells every assistant when it connects.
+- [Credits & pricing](../pricing) — what everything costs; `list_models` and `quote_cost` price a request first, free.
 - [Best practices](../guides/best-practices) — how to get a film that is ready to publish.
 - [Recipes](../guides/recipes) — complete conversations for the common jobs.

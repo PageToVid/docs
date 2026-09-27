@@ -56,6 +56,20 @@ calm narrator. [How models are chosen](guides/ai-models).
   <a href="https://pagetovid.com/v/cmuh6r92i0003s61ythly8xol.mp4">Watch the Seedance film (MP4)</a>
 </video>
 
+## More than screencasts
+
+A film does not have to be only the website. Where the page cannot show a beat, a scene can be a
+generated clip, the same recurring person can appear in every shot, and a presenter can talk from the
+corner while the real site plays full-screen.
+
+| | What it is | Guide | On the website |
+|---|---|---|---|
+| **AI clips** | A few seconds of generated film with sound, model chosen per scene | [AI clips](guides/ai-clips) | [pagetovid.com/features/ai-clips](https://pagetovid.com/features/ai-clips) |
+| **Characters** | One face kept across every clip of a film | [Characters](guides/characters) | [pagetovid.com/features/ai-characters](https://pagetovid.com/features/ai-characters) |
+| **Presenter** | A character talking in the corner over the real site | [A presenter in the corner](guides/presenter) | [pagetovid.com/features/presenter](https://pagetovid.com/features/presenter) |
+
+A film is 40 credits; AI clips and stills are priced on top — see [Credits & pricing](pricing).
+
 ---
 
 ## The one rule to remember

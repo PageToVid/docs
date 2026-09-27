@@ -87,10 +87,10 @@ crossfades.
 ## 8. Generate only what the page cannot show
 
 Most beats can be filmed from the page. For the ones that cannot — an idea, a feeling, a before, a
-person — an image scene takes `data.generate` (a still, 1 credit) or `data.generate` + `data.clip`
-(a few seconds of film, 4 credits). A line in quotation marks inside `generate` is spoken by the person
+person — an image scene takes `data.generate` (a still, 40 credits) or `data.generate` + `data.clip`
+(a few seconds of film: 160 credits for the house clip, or the named model's price). A line in quotation marks inside `generate` is spoken by the person
 in the clip. Keep one face across a film with a [character](presenter#1-create-the-character), and
-choose the model per scene — see [AI models](ai-models).
+choose the model per scene — see [AI clips](ai-clips) and [AI models](ai-models).
 
 ## 9. Silent scenes are allowed
 
@@ -110,6 +110,6 @@ page each shot was captured from. A film can finish (`status: done`) and still n
 
 `update_storyboard` changes a film in place — rewrite a line, correct one figure with `set_data`,
 re-point the camera with `set_shot`, add a presenter with `set_inset` — then `rerender_video` makes the
-new film for one credit. The operations in one call build on each other and are applied or refused
+new film for a render's 40 credits. The operations in one call build on each other and are applied or refused
 together. Captions out of step with the voice are re-timed with `rerender_video` and
 `captions_only: true` — no new take, free once per render.

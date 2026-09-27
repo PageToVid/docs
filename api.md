@@ -23,7 +23,7 @@ A key spends your credits: keep it in your secret manager, never in a repository
 Authorization: Bearer cp_live_xxxxxxxxxxxxxxxx
 ```
 
-Base URL `https://pagetovid.com` · one credit = one rendered video.
+Base URL `https://pagetovid.com` · a rendered video costs 40 credits — see [Credits & pricing](pricing).
 
 ## Create a video
 
@@ -69,7 +69,7 @@ poster and subtitle links, plus `warnings` — read them before you publish.
 | `PATCH` | `/api/v1/shows/{id}` | Change a show |
 | `POST` | `/api/v1/shows/{id}/run` | Run a show now |
 | `POST` | `/api/v1/shows/{id}/webhook` | Signed webhook that triggers an episode |
-| `GET` `POST` | `/api/v1/characters` | Recurring characters for generated clips |
+| `GET` `POST` | `/api/v1/characters` | Recurring characters for generated clips ([guide](guides/characters)) |
 | `DELETE` | `/api/v1/characters/{name}` | Remove a character |
 | `GET` `POST` | `/api/v1/captures` | Captured screens banked for a site |
 | `POST` | `/api/v1/captures/images` | Upload captured images |

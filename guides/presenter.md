@@ -1,7 +1,7 @@
 ---
 title: A presenter in the corner
 parent: Guides
-nav_order: 2
+nav_order: 4
 description: "Put a recurring AI presenter in the corner of a screencast, speaking every line himself."
 ---
 
@@ -22,7 +22,8 @@ than instead of it, and it works on a filmed scene and a drawn one alike.
 
 ## 1. Create the character
 
-A character keeps the same face in every clip of a film. Draw its reference portrait once:
+A [character](characters) keeps the same face in every clip of a film. Draw its reference portrait
+once (40 credits, the price of one still — or free from images you already have):
 
 ```text
 create_character
@@ -74,14 +75,32 @@ never rejected.
 |---|---|
 | `generate` | The shot, as you would describe it. A line in quotation marks is said out loud. `null` removes the presenter. |
 | `character` | A `create_character` name, so the same face recurs. |
-| `model` | Which model makes the clip, e.g. `seedance-2.0-mini`. Omitted: the house model. See [AI models](ai-models). |
+| `model` | Which model makes the clip, e.g. `seedance-2.0-mini`. Omitted: the house clip (Veo 3.1 Fast). See [AI models](ai-models). |
 | `corner` | `bottom-right`, `bottom-left`, `top-right`, `top-left`. **Omit it** and the corner that keeps clear of what the shot is about is chosen — the button being clicked, the field being typed into — both before the camera moves and where it settles. A corner you name is kept even if it covers something, and the render says so. |
 | `shape` | `rounded` (the whole clip), `circle` (a talking head — needs a close-up), `square`. |
 | `size` | Width as a share of the frame, 0.14–0.42. Default 0.26. |
 | `mute` | The face without the voice. By default a scene with no narration lets the presenter carry it, and a narrated one drops him to a bed under the narrator. |
 
+## What it costs
+
+A presenter is one generated clip per scene, charged when it is made and refunded if it fails (the
+scene then plays without the presenter):
+
+- **House clip** (no `model`): 160 credits.
+- **A named model**: its per-second price at the model's **cheapest** resolution — a presenter is drawn
+  at a quarter of the width, where the difference never shows. A 6-second presenter on
+  `seedance-2.0-mini` is 94 credits.
+
+Ask first, free:
+
+```json
+{ "name": "quote_cost",
+  "arguments": { "kind": "clip", "model": "seedance-2.0-mini", "role": "inset", "duration_s": 6 } }
+```
+
 The presenter's clip is reused on later renders at no charge; moving it (`corner`, `size`, `shape`)
-never regenerates it. Changing `generate` or `character` makes a new one.
+never regenerates it. Changing `generate` or `character` makes a new one. Every price is in
+[Credits & pricing](../pricing).
 
 ## What the layout guarantees
 

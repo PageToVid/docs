@@ -1,7 +1,7 @@
 ---
 title: Recipes
 parent: Guides
-nav_order: 4
+nav_order: 6
 description: "Complete MCP conversations for the common PageToVid jobs."
 ---
 
@@ -35,7 +35,7 @@ what to ask for.
 1. `get_storyboard` — find scene 3's `scene_id`.
 2. `inspect_page` — find the pricing table's selector.
 3. `update_storyboard` `set_shot` `scene_id` `selector` `action: spotlight`.
-4. `rerender_video` — one credit; only what changed is filmed again.
+4. `rerender_video` — 40 credits (a render); only what changed is filmed again.
 
 ## Correct one figure
 

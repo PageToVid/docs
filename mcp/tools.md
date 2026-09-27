@@ -7,20 +7,20 @@ nav_order: 3
 # Tool reference
 {: .no_toc }
 
-Every tool the PageToVid MCP server publishes — **36 tools** — generated from the server's own `tools/list`, so each parameter here is exactly what your client receives. Endpoint: `https://pagetovid.com/mcp`.
+Every tool the PageToVid MCP server publishes — **38 tools** — generated from the server's own `tools/list`, so each parameter here is exactly what your client receives. Endpoint: `https://pagetovid.com/mcp`.
 
 | Tool | Cost | What it does |
 |---|---|---|
 | [`cancel_video`](#cancel_video) | Free | Stops a render that is still running and returns every credit it spent — the render credit and any AI stills or clips it had already generated. |
-| [`create_animation`](#create_animation) | 1 credit | Make a video from data. |
-| [`create_character`](#create_character) | Free or 1 credit | Names a character so a generated clip that names it keeps the same identity across scenes (Veo 3.1 ingredients-to-video). |
+| [`create_animation`](#create_animation) | 40 credits | Make a video from data. |
+| [`create_character`](#create_character) | Free or 40 credits | Names a character so a generated clip that names it keeps the same identity across scenes (Veo 3.1 ingredients-to-video). |
 | [`create_format`](#create_format) | Free | A format is how an episode is made — aspect, language, voice, music, tone, goal, length, cards, brand, theme, the brief or the scene templates — and knows nothi |
 | [`create_show`](#create_show) | Free | A show makes a video from each new item in a feed — the same storyboard every episode, new data every episode: a weekly release video from a changelog, a daily  |
-| [`create_video`](#create_video) | 1 credit | Starts a PageToVid render that turns a public web page URL into a narrated video with an AI voiceover, motion graphics and optional subtitles. |
+| [`create_video`](#create_video) | 40 credits | Starts a PageToVid render that turns a public web page URL into a narrated video with an AI voiceover, motion graphics and optional subtitles. |
 | [`detect_brand`](#detect_brand) | Free | Opens a public web page in a real browser and reads its design tokens from the live CSS: accent colours, heading typeface, light or dark ground and corner style |
 | [`fork_format`](#fork_format) | Free | A new format whose version 1 is the original's latest version, unpinned from its parent. |
-| [`generate_asset`](#generate_asset) | 1 or 4 credits | Generates a single AI still (1 credit) or clip (4 credits) straight into your media bank and returns its id and URL — no project, no render, no minimum length. |
-| [`generate_site_videos`](#generate_site_videos) | 1 credit | Per video started. |
+| [`generate_asset`](#generate_asset) | 40 or 160 credits | Generates a single AI still (40 credits) or house clip (160 credits) straight into your media bank and returns its id and URL — no project, no render, no minimu |
+| [`generate_site_videos`](#generate_site_videos) | 40 credits | Per video started. |
 | [`get_account`](#get_account) | Account | CALL THIS FIRST. |
 | [`get_format`](#get_format) | Free | The format's current template, its version history and the shows that run it, with each show's pin. |
 | [`get_site_plan`](#get_site_plan) | Free | Returns the plan for a site: the videos it should have, each with a goal, a pitch, an audience, a ready creative brief and the shots it needs — and, for each, t |
@@ -33,15 +33,17 @@ Every tool the PageToVid MCP server publishes — **36 tools** — generated fro
 | [`list_commons_assets`](#list_commons_assets) | Free | Media people shared from their banks for anyone to use in a film — logos, product shots, illustrations, recorded flows — with tags, a licence and the site to cr |
 | [`list_connections`](#list_connections) | Free | Every registered connection with its alias, kind and URL. |
 | [`list_formats`](#list_formats) | Free | The account's formats, newest change first, with versions and the shows running each. |
+| [`list_models`](#list_models) | Free | Every model this account can generate clips and stills with — capabilities, limits and the exact credit price — before spending anything. |
 | [`list_motions`](#list_motions) | Free | List animations, motions, visuals and chart types. |
 | [`list_shows`](#list_shows) | Account | Lists the shows on this account — or one site's — with their cadence, caps, whether each is confirmed or still held, what it spent today, and its five most rece |
 | [`list_themes`](#list_themes) | Free | Lists what the theme parameter accepts: the built-in presets, the modes, the type faces the renderer can actually load, and the contrast and palette rules that  |
 | [`list_video_options`](#list_video_options) | Free | Lists what create_video accepts: goals, aspect ratios, languages, voices, background music beds (eight, each with a family: calm, energetic, serious, playful) a |
 | [`list_videos`](#list_videos) | Account | Lists videos newest first with their status and, when finished, their links. |
 | [`preview_episode`](#preview_episode) | Free | Runs the format's resolvers against the item (real upstream calls, cached where the format says so), compiles the storyboard and returns every beat's final text |
+| [`quote_cost`](#quote_cost) | Free | What something will cost in credits, spending nothing. |
 | [`register_mcp_connection`](#register_mcp_connection) | Free | Registers (or replaces) a connection by alias: the URL and, optionally, a credential kept encrypted on this account. |
-| [`rerender_video`](#rerender_video) | 1 credit | Produces a new film from the video's current storyboard, skipping the page analysis and scripting that create_video does. |
-| [`run_show`](#run_show) | 1 credit | Per episode started. |
+| [`rerender_video`](#rerender_video) | 40 credits | Produces a new film from the video's current storyboard, skipping the page analysis and scripting that create_video does. |
+| [`run_show`](#run_show) | 40 credits | Per episode started. |
 | [`update_format`](#update_format) | Free | Changes any of a format's template fields. |
 | [`update_show`](#update_show) | Free | Changes a show's switch, cadence, caps or name, or moves it to another format or format version. |
 | [`update_storyboard`](#update_storyboard) | Free | Changes a video's storyboard: rewrite what a scene says, change its caption or heading, redraw it as a different visual, correct its data, tint it, point its ca |
@@ -63,13 +65,13 @@ Stops a render that is still running and returns every credit it spent — the r
 
 ## create_animation
 
-**Cost:** 1 credit
+**Cost:** 40 credits
 
 Make a video from data. Create, make, generate or render an animated video, explainer, data video or chart video from content you already have — figures, a table, notes, an idea — with NO website and NO URL required. This is the tool for turning numbers or text you are holding into a finished MP4 with narration and captions. You supply the scenes; PageToVid draws each as a motion graphic (charts, big numbers, comparisons, timelines, quotes, title cards), records an AI voiceover, burns captions and renders it. Call list_motions first for the 19 visuals, what each one needs, and the animations it accepts. Rendering is asynchronous: this returns a video_id immediately and get_video reports progress. get_video, get_storyboard, update_storyboard, rerender_video and get_video_embed all work on the result exactly as they do for a filmed video.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `scenes` | array | yes | The scenes to draw, in order, 1-20. Every one is validated before anything is created or charged. The render costs 1 credit; on top of that each scene that generates an AI visual is metered — a still (data.generate) 1, a clip (data.clip) 4 — charged per visual, refunded if one fails, and skipped if you run out. get_account returns credit_costs. |
+| `scenes` | array | yes | The scenes to draw, in order, 1-20. Every one is validated before anything is created or charged. The render costs 40 credit; on top of that each scene that generates an AI visual is metered — a still (data.generate) 40, a clip (data.clip) 160 — charged per visual, refunded if one fails, and skipped if you run out. get_account returns credit_costs. |
 | `aspect_ratio` | `16:9` · `9:16` · `1:1` |  | 16:9 for web and YouTube, 9:16 for Reels/Shorts/TikTok, 1:1 for feeds. Default `"16:9"`. |
 | `language` | `en` · `fr` · `es` · `de` · `it` · `pt` · `nl` |  | Language of the voiceover and captions. Write the narration in this language. Default `"en"`. |
 | `voice` | `auto` · `Kore` · `Zephyr` · `Puck` · `Charon` · `Aoede` · `Fenrir` · `Leda` · `Orus` · `Callirrhoe` · `Achird` · `Sulafat` · `Sadachbia` |  | Voice character (every voice is multilingual). auto picks a voice that fits the goal and tone and differs from the site's previous films; name one to fix it. Default `"auto"`. |
@@ -94,20 +96,20 @@ Make a video from data. Create, make, generate or render an animated video, expl
 | `cursor_style` | `arrow` · `hand` · `dot` · `none` |  | The pointer the recording draws: the system arrow, a pointing hand, a presenter's dot, or none. |
 | `press_effect` | `punch` · `freeze` · `slowmo` · `none` |  | What the picture does when the cursor presses something: punch in, freeze for a beat, half speed, or nothing. |
 | `end_screen` | `cta` · `qr` · `social` · `logo` · `none` |  | The closing card: the call to action, the same with a scannable code to the film's page, the brand's handles, the mark alone, or no card. |
-| `ai_budget` | object |  | A ceiling on AI generation for this render, so a plan full of clips cannot surprise you with the bill. Generation is metered (1 credit a still, 4 a clip, on top of 1 for the render), and the response always returns ai_plan with what was asked for and the estimated cost. Omitted, nothing is capped. |
+| `ai_budget` | object |  | A ceiling on AI generation for this render, so a plan full of clips cannot surprise you with the bill. Generation is metered (40 credit a still, 160 a clip, on top of 40 for the render), and the response always returns ai_plan with what was asked for and the estimated cost. Omitted, nothing is capped. |
 | `idempotency_key` | string |  | A caller-chosen id for this request. Sending the same key again within 24 hours returns the original video instead of rendering and charging a second time — use it if your client may retry. |
 
 ## create_character
 
-**Cost:** Free or 1 credit
+**Cost:** Free or 40 credits
 
-Names a character so a generated clip that names it keeps the same identity across scenes (Veo 3.1 ingredients-to-video). Give refs — 1 to 3 reference image URLs on this account — or a generate prompt to DRAW the reference here (1 image credit, refunded if it fails; naming a character from refs you already have is free). Then set an animation image scene's data.clip=true and data.character="<name>" to make a moving beat with that character. Building one from a film you already made: take a scene's raw_frame_url from get_storyboard, never its thumbnail_url — the thumbnail is cut from the finished video and carries the headline and caption burnt into the picture, and a reference image with text in it teaches the generator to draw text.
+Names a character so a generated clip that names it keeps the same identity across scenes (Veo 3.1 ingredients-to-video). Give refs — 1 to 3 reference image URLs on this account — or a generate prompt to DRAW the reference here (40 credits, refunded if it fails; naming a character from refs you already have is free). Then set an animation image scene's data.clip=true and data.character="<name>" to make a moving beat with that character. Building one from a film you already made: take a scene's raw_frame_url from get_storyboard, never its thumbnail_url — the thumbnail is cut from the finished video and carries the headline and caption burnt into the picture, and a reference image with text in it teaches the generator to draw text.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `name` | string | yes | The character's name, e.g. "Ada, the founder". A clip scene names it in data.character to stay consistent. |
 | `refs` | array |  | 1 to 3 reference image URLs — media on this account (a generated still, a bank asset, a commons asset from list_commons_assets). These become Veo's ingredients so the same character recurs. Give these OR a generate prompt. |
-| `generate` | string |  | Draw the reference portrait instead of supplying one — e.g. "a woman in her late twenties, platinum blonde, grey tee". Costs 1 image credit, refunded if it fails. Ignored when refs are given. |
+| `generate` | string |  | Draw the reference portrait instead of supplying one — e.g. "a woman in her late twenties, platinum blonde, grey tee". Costs 40 credits (one still), refunded if it fails. Ignored when refs are given. |
 | `description` | string |  | A short line describing the character, added to every clip's prompt so words and image agree. |
 | `site_url` | string |  | Scope the character to one site. |
 
@@ -144,7 +146,7 @@ A format is how an episode is made — aspect, language, voice, music, tone, goa
 
 **Cost:** Free
 
-A show makes a video from each new item in a feed — the same storyboard every episode, new data every episode: a weekly release video from a changelog, a daily listing video from an RSS feed, a clip per new post. Episodes are ordinary videos (1 credit each) made by run_show or, once confirmed, by the scheduler at the show's cadence. A new show is HELD: nothing renders until its owner has called run_show once with confirm=true, and it never spends more than max_credits_per_day. Returns the show and what to do next.
+A show makes a video from each new item in a feed — the same storyboard every episode, new data every episode: a weekly release video from a changelog, a daily listing video from an RSS feed, a clip per new post. Episodes are ordinary videos (a render each) made by run_show or, once confirmed, by the scheduler at the show's cadence. A new show is HELD: nothing renders until its owner has called run_show once with confirm=true, and it never spends more than max_credits_per_day. Returns the show and what to do next.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
@@ -159,7 +161,7 @@ A show makes a video from each new item in a feed — the same storyboard every 
 | `feed_map` | object |  | For feed_kind json when the document is not a JSON Feed: dotted paths, e.g. {"items":"data.results","id":"slug","title":"name","summary":"excerpt","link":"href","image":"cover.url","date":"published_at"}. `items` may be omitted when the document is an array. |
 | `cadence` | `manual` · `hourly` · `daily` · `weekly` |  | How often the scheduler runs the show once it is confirmed. manual: only when run_show is called. Default `"daily"`. |
 | `max_episodes_per_run` | integer |  | Newest items first; at most this many episodes per run. Default `1`. Range 1–10. |
-| `max_credits_per_day` | integer |  | The show never spends more than this in a UTC day, however many items the feed gains. Default `3`. Range 1–50. |
+| `max_credits_per_day` | integer |  | The show never spends more than this in a UTC day, however many items the feed gains. An episode is 40 credits. Default `120`. Range 40–2000. |
 | `format_id` | string |  | Run an existing format (create_format / list_formats) instead of the fields below; its kind must match. Without it, the fields below become the show's own format, version 1, editable later with update_format. |
 | `format_version` | integer |  | With format_id: pin the show to this version. Omitted, the show follows the format's latest version. Range 1–100000. |
 | `goal` | `explainer` · `ad` · `demo` · `tutorial` · `article` |  | What the video is for. Shapes the script's structure and pacing. Default `"explainer"`. |
@@ -181,7 +183,7 @@ A show makes a video from each new item in a feed — the same storyboard every 
 
 ## create_video
 
-**Cost:** 1 credit
+**Cost:** 40 credits
 
 Starts a PageToVid render that turns a public web page URL into a narrated video with an AI voiceover, motion graphics and optional subtitles. Rendering is asynchronous and usually takes several minutes but can run past fifteen for a heavy page or a busy queue; this returns a video_id immediately, and get_video reports the phase, the progress and an estimate recalculated from how long this particular render has already taken. The page must be publicly reachable — a page behind a login is filmed only when a capture session was registered for the site from the VS Code or browser extension.
 
@@ -238,9 +240,9 @@ A new format whose version 1 is the original's latest version, unpinned from its
 
 ## generate_asset
 
-**Cost:** 1 or 4 credits
+**Cost:** 40 or 160 credits
 
-Generates a single AI still (1 credit) or clip (4 credits) straight into your media bank and returns its id and URL — no project, no render, no minimum length. Use it for character reference portraits, or for any visual you want to see before it goes into a film. The charge is taken before the call and refunded automatically if the generation fails; identical output is de-duplicated, so a repeat does not cost a second file. Generation is a paid-plan feature.
+Generates a single AI still (40 credits) or house clip (160 credits) straight into your media bank and returns its id and URL — no project, no render, no minimum length. Use it for character reference portraits, or for any visual you want to see before it goes into a film. The charge is taken before the call and refunded automatically if the generation fails; identical output is de-duplicated, so a repeat does not cost a second file. Generation is a paid-plan feature.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
@@ -253,9 +255,9 @@ Generates a single AI still (1 credit) or clip (4 credits) straight into your me
 
 ## generate_site_videos
 
-**Cost:** 1 credit
+**Cost:** 40 credits
 
-Per video started. Starts a video for each idea in the site's plan (see get_site_plan) that has none yet, or for the idea_ids given. Each is an ordinary filmed video — the idea's brief becomes its focus — and each costs one credit when it starts. Called without confirm it only lists what it would make and what that costs; nothing is created. Rendering is asynchronous: get_video reports each one. A retried call does not start the same idea twice.
+Per video started. Starts a video for each idea in the site's plan (see get_site_plan) that has none yet, or for the idea_ids given. Each is an ordinary filmed video — the idea's brief becomes its focus — and each costs a render when it starts. Called without confirm it only lists what it would make and what that costs; nothing is created. Rendering is asynchronous: get_video reports each one. A retried call does not start the same idea twice.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
@@ -273,7 +275,7 @@ Per video started. Starts a video for each idea in the site's plan (see get_site
 | `theme` | object |  | The film's visual identity: palette, type and mode. Call list_themes for the presets and the rules, or detect_brand to read a site's own. Omitted, an animation uses the house palette and a filmed video adopts whatever the page's CSS says. |
 | `look` | `clean` · `bold` · `editorial` · `playful` · `tech` · `auto` |  | The film's LOOK: captions, cutting, sound cues, music family and motion register chosen together. auto picks one from the goal, the shape and the site's film count, so two films of a site differ; list_video_options describes each. Default `"auto"`. |
 | `caption_style` | `karaoke` · `bold` · `boxed` · `minimal` · `outline` |  | Caption style overriding the look's own; omit it to keep the look's. |
-| `confirm` | boolean |  | false (the default) previews the videos and spends nothing. true starts them and spends one credit each. Default `false`. |
+| `confirm` | boolean |  | false (the default) previews the videos and spends nothing. true starts them and spends 40 credits each. Default `false`. |
 | `max_videos` | integer |  | At most this many videos in one call. Call again for the rest. Default `5`. Range 1–10. |
 
 ## get_account
@@ -405,6 +407,17 @@ The account's formats, newest change first, with versions and the shows running 
 |---|---|---|---|
 | `site_url` | string |  | Only this site's formats. Omitted, every format on the account. |
 
+## list_models
+
+**Cost:** Free · read-only
+
+Every model this account can generate clips and stills with — capabilities, limits and the exact credit price — before spending anything. Omit model in a scene for the house clip; name one (data.model, or set_inset model) to choose it and pay its price. quote_cost prices a specific request.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `modality` | `video` · `image` |  | Only video or only image models. |
+| `include_unavailable` | boolean |  | Also list models this account cannot use now, with the reason. |
+
 ## list_motions
 
 **Cost:** Free · read-only
@@ -465,6 +478,22 @@ Runs the format's resolvers against the item (real upstream calls, cached where 
 | `format_version` | integer |  | Preview this version; omitted, the latest. Range 1–100000. |
 | `item` | object |  | The item to make the episode of: {title, summary, link, image, date}. Omitted, a sample item. |
 
+## quote_cost
+
+**Cost:** Free · read-only
+
+What something will cost in credits, spending nothing. Either price one generation — kind clip or image, with an optional model, duration_s, resolution, role (scene or inset) and count — or give a video_id to price its next rerender_video: the render plus every AI visual not yet made. A length or resolution the model does not offer is refused with what it does offer.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `video_id` | string |  | Price the next rerender_video of this video. |
+| `kind` | `clip` · `image` |  | Price one generation of this kind. |
+| `model` | string |  | A model id from list_models. Omit for the house model. |
+| `duration_s` | number |  | Clip length in seconds, within the model's range. Range 1–60. |
+| `resolution` | `480p` · `720p` · `768p` · `1080p` · `2k` · `4k` |  | Clip resolution, one the model offers. |
+| `role` | `scene` · `inset` |  | A full-frame scene or a presenter in a corner (a presenter uses the cheapest resolution). |
+| `count` | integer |  | How many, 1-4. Range 1–4. |
+
 ## register_mcp_connection
 
 **Cost:** Free
@@ -481,21 +510,21 @@ Registers (or replaces) a connection by alias: the URL and, optionally, a creden
 
 ## rerender_video
 
-**Cost:** 1 credit · destructive
+**Cost:** 40 credits · destructive
 
-Produces a new film from the video's current storyboard, skipping the page analysis and scripting that create_video does. Consumes one PageToVid credit — except once per video when the finished film missed its own length target (get_video reports length_within_tolerance: false): that correction is ours, and free. With captions_only true it only re-times the subtitles on the film's existing voice track (no re-recording, no new take), free once per render. The previous video file is replaced once the new render finishes.
+Produces a new film from the video's current storyboard, skipping the page analysis and scripting that create_video does. Consumes one render's credits — except once per video when the finished film missed its own length target (get_video reports length_within_tolerance: false): that correction is ours, and free. With captions_only true it only re-times the subtitles on the film's existing voice track (no re-recording, no new take), free once per render. The previous video file is replaced once the new render finishes.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `video_id` | string | yes | The video to re-render. |
 | `theme` | object |  | The film's visual identity: palette, type and mode. Call list_themes for the presets and the rules, or detect_brand to read a site's own. Omitted, an animation uses the house palette and a filmed video adopts whatever the page's CSS says. Set here it replaces the video's current theme and is kept for later re-renders. |
 | `idempotency_key` | string |  | A caller-chosen id for this request. Sending the same key again within 24 hours returns the same re-render instead of starting and charging a second time — use it if your client may retry. |
-| `captions_only` | boolean |  | true re-times the subtitles on the voice track the film already has and renders again — nothing is re-recorded, re-scripted or re-voiced, so only the caption timing changes. The first such resync after a paid render is free; the next one on the same render costs 1 credit. Use it when get_video's film has captions out of step with the voice. |
+| `captions_only` | boolean |  | true re-times the subtitles on the voice track the film already has and renders again — nothing is re-recorded, re-scripted or re-voiced, so only the caption timing changes. The first such resync after a paid render is free; the next one on the same render costs a render's credits. Use it when get_video's film has captions out of step with the voice. |
 | `target_seconds` | integer |  | Re-baseline how long this film is MEANT to be. The target a video was created with is often a guess made before any content existed; when the film has legitimately grown or shrunk since, set it to what it should be now rather than cutting to satisfy the old number. It changes what length_within_tolerance is measured against and is kept for later re-renders. It does not change the film — the narration is still what sets the length. Range 15–180. |
 
 ## run_show
 
-**Cost:** 1 credit
+**Cost:** 40 credits
 
 Per episode started. Reads the show's feed (or the items given), skips every item that already became an episode, and — within max_episodes_per_run and max_credits_per_day — starts one video per new item. Without confirm it returns the list it would make and spends nothing. On a held show, confirm=true is the owner's one-time approval: it makes the episodes and lets the scheduler run the show from then on.
 
@@ -546,7 +575,7 @@ Changes a show's switch, cadence, caps or name, or moves it to another format or
 | `active` | boolean |  | false pauses the show (the scheduler skips it, run_show refuses); true resumes it. |
 | `cadence` | `manual` · `hourly` · `daily` · `weekly` |  | A new cadence. |
 | `max_episodes_per_run` | integer |  | A new per-run cap. Range 1–10. |
-| `max_credits_per_day` | integer |  | A new daily credit cap. Range 1–50. |
+| `max_credits_per_day` | integer |  | A new daily credit cap (an episode is 40 credits). Range 40–2000. |
 | `name` | string |  | A new name. |
 | `format_id` | string |  | Move the show to another format of the same kind. |
 | `format_version` | integer |  | Pin the show to this version of its format. Range 1–100000. |
