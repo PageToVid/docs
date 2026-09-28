@@ -43,6 +43,9 @@ See [Credits & pricing](pricing.md).
   **`release_video`** publishes a held film.
 - **`ai_mode`** on `create_video`: `none`, `assist`, or `rich`, where the planner may add AI stills
   and clips within `ai_budget`.
+- **Each voice at its own pace.** The twelve voices do not read at the same speed. PageToVid
+  learns each voice's pace from finished films and uses it for the word budget and the length
+  checks, so the film you ask for is closer to the length you asked for.
 
 ## Sound and languages
 
@@ -98,3 +101,6 @@ See [Credits & pricing](pricing.md).
 - **Approvals:** `request_approval`, `approve`, `request_changes`.
 - **Comments and an audit log:** `list_comments`, `add_comment`, `get_audit_log`.
 - Seats per plan: Pro 3, Scale 5, Business 15, Agency unlimited.
+- **On the website too.** A member picks the workspace with the switcher at the top of the
+  dashboard. The films, sites and buttons they see follow their role and their sites, and what
+  they spend counts against their monthly cap. Deleting a film is for the owner and admins.
