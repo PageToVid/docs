@@ -229,11 +229,18 @@ them all.
 
 - **Referral:** a new account that signs up with your link gets 200 credits once its email is
   verified. You get 200 credits when that account's first film finishes, at most 20 times a month.
-  A referral past the 20th still earns commission.
+  A referral past the 20th still earns commission. An invited account can make 8 free films on a
+  website instead of 3, so the extra credits can be spent on the site it came to film.
+  The "Make your own" button on a shared film's page carries its maker's link.
 - **Commission:** you also earn a cash share of every payment a referred account makes, before tax,
   for as long as it pays: 20% on credit packs and on the Starter, Pro and Scale plans, 10% on
   Business, Agency and Enterprise. Each commission is held for 30 days, the refund window, and can
   be paid out once you have $50.
+- **Money or credits:** take your available commission as cash (from $50), or as credits with a
+  50% bonus, from the first cent and with no minimum.
+- **Insider and Ambassador:** 3 active paying referrals make you an Insider (Starter features and
+  Starter's monthly credits, free); 10 make you an Ambassador (Pro features and Pro's monthly
+  credits). Each lasts while you keep that many active paying referrals.
 - **Shows** (recurring videos from a feed): each episode is an ordinary render, 40 credits.
   `max_credits_per_day` caps a show's daily spend, from 40 to 2,000 credits; the default, 120, is three
   episodes a day.
