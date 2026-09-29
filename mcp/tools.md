@@ -7,7 +7,7 @@ nav_order: 3
 # Tool reference
 {: .no_toc }
 
-Every tool the PageToVid MCP server publishes — **73 tools** — generated from the server's own `tools/list`, so each parameter here is exactly what your client receives. Endpoint: `https://pagetovid.com/mcp`.
+Every tool the PageToVid MCP server publishes — **74 tools** — generated from the server's own `tools/list`, so each parameter here is exactly what your client receives. Endpoint: `http://localhost:3000/mcp`.
 
 | Tool | Cost | What it does |
 |---|---|---|
@@ -21,6 +21,7 @@ Every tool the PageToVid MCP server publishes — **73 tools** — generated fro
 | [`create_object`](#create_object) | Free | Names a product, bag, watch, logo, packaging, place, vehicle or UI screen from reference images so films keep it identical. |
 | [`create_review_link`](#create_review_link) | Free | A link to watch the film and, if allowed, comment with no account. |
 | [`create_show`](#create_show) | Free | A show makes a video from each new item in a feed — the same storyboard every episode, new data every episode: a weekly release video from a changelog, a daily  |
+| [`create_upload`](#create_upload) | Free | A one-hour address to send a file you hold (picture, clip, music, font, PDF/PPTX deck, ≤ 30 MB): curl -sS -T <file> "<upload_url>". |
 | [`create_video`](#create_video) | 40 credits | Turns a public web page into a narrated video: AI voiceover, motion graphics, optional subtitles. |
 | [`delete_character`](#delete_character) | Free | Deletes a character by name. |
 | [`delete_object`](#delete_object) | Free | Deletes an object by name. |
@@ -81,7 +82,7 @@ Every tool the PageToVid MCP server publishes — **73 tools** — generated fro
 | [`update_object`](#update_object) | Free | Changes only the fields sent. |
 | [`update_show`](#update_show) | Free | Changes a show's switch, cadence, caps or name, or moves it to another format or format version. |
 | [`update_storyboard`](#update_storyboard) | Free | Edits a video's storyboard in 21 operations (each branch of operations says what it does and takes): words, captions, visuals, data, shots, scenes, transitions, |
-| [`upload_asset`](#upload_asset) | Free | Fetches a public https file into your private bank: logo, product photo, footage or music bed. |
+| [`upload_asset`](#upload_asset) | Free | Puts a file in your bank from a public https url or small data_base64 (a bigger file you hold: create_upload). |
 | [`validate_format`](#validate_format) | Free | Compiles the template against a sample item without touching the database or any feed: the catalogue checks (voice, music, language, theme…), the scene template |
 | [`verify_episode`](#verify_episode) | Free | The proof behind a film: the format version that made it (template SHA-256), every resolver source and what it fetched, the integrity report, the claim ledger ( |
 
@@ -139,7 +140,7 @@ Copies a scene into another of your videos with its footage and generated media,
 
 **Cost:** 40 credits
 
-Make a video from data: an animated explainer, data or chart video from content you hold — figures, a table, notes, an idea — with NO website or URL. You write the scenes; each is drawn as a motion graphic, voiced, captioned and rendered. list_motions has the 22 visuals, what each needs and the animations it accepts. Asynchronous: returns a start receipt with the video_id; call get_video for the full status. Every video tool works on the result as on a filmed video.
+Make a video from data: an animated explainer, data or chart video from content you hold — figures, a table, notes, an idea — with NO website or URL. You write the scenes; each is drawn as a motion graphic, voiced, captioned and rendered. list_motions has the 21 visuals, what each needs and the animations it accepts. Asynchronous: returns a start receipt with the video_id; call get_video for the full status. Every video tool works on the result as on a filmed video.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
@@ -266,7 +267,7 @@ A show makes a video from each new item in a feed — the same storyboard every 
 | `watchlist` | array |  | feed_kind watchlist: the items, as run_show takes them. Each is made once — or once per period with repeat_every. |
 | `repeat_every` | `none` · `month` · `quarter` · `year` |  | query and watchlist shows: make every item again each period (the period is in the episode key and available to a programme as {{ item.period }}). none: each item once, ever. Default `"none"`. |
 | `feed_map` | object |  | For feed_kind json when the document is not a JSON Feed: dotted paths, e.g. {"items":"data.results","id":"slug","title":"name","summary":"excerpt","link":"href","image":"cover.url","date":"published_at"}. `items` may be omitted when the document is an array. |
-| `cadence` | `manual` · `hourly` · `daily` · `weekly` |  | How often the scheduler runs the show once it is confirmed. manual: only when run_show is called. Default `"daily"`. |
+| `cadence` | `manual` · `hourly` · `daily` · `weekly` |  | How often the scheduler runs the show once it is confirmed. manual: only when run_show is called. Default daily; manual for manual and webhook feeds. |
 | `max_episodes_per_run` | integer |  | Newest items first; at most this many episodes per run. Default `1`. Range 1–10. |
 | `max_credits_per_day` | integer |  | The show never spends more than this in a UTC day, however many items the feed gains. An episode is 40 credits. Default `120`. Range 40–2000. |
 | `format_id` | string |  | Run an existing format (create_format / list_formats) instead of the fields below; its kind must match. Without it, the fields below become the show's own format, version 1, editable later with update_format. |
@@ -287,6 +288,18 @@ A show makes a video from each new item in a feed — the same storyboard every 
 | `title_template` | string |  | As create_format. |
 | `scenes` | array |  | As create_format. An image scene whose {{image}} is empty for an item is dropped from that episode. |
 | `routing` | object |  | As create_format. |
+
+## create_upload
+
+**Cost:** Free
+
+A one-hour address to send a file you hold (picture, clip, music, font, PDF/PPTX deck, ≤ 30 MB): curl -sS -T <file> "<upload_url>". The reply is the asset or the deck's slides.
+
+| Parameter | Type | Required | Description |
+|---|---|---|---|
+| `kind` | `image` · `video` · `audio` · `font` · `deck` |  | Read from the bytes if omitted. |
+| `name` | string |  | A label. |
+| `site_url` | string |  | Attach to this site. |
 
 ## create_video
 
@@ -1086,12 +1099,14 @@ Edits a video's storyboard in 21 operations (each branch of operations says what
 
 **Cost:** Free
 
-Fetches a public https file into your private bank: logo, product photo, footage or music bed. The type is read from the bytes, video becomes H.264, identical bytes return the existing asset. A picture or clip goes in an image scene as data.asset_id; audio is a film's music as "asset:<id>" (create_video, create_animation, set_music) and loops under a longer film.
+Puts a file in your bank from a public https url or small data_base64 (a bigger file you hold: create_upload). Picture or clip → data.asset_id in an image scene; audio → music "asset:<id>"; deck (PDF/PPTX) → every slide's text and pictures, to write the storyboard from. Identical bytes return the existing asset.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `url` | string | yes | Public https URL of the file. |
-| `kind` | `image` · `video` · `audio` · `font` | yes | image ≤ 20 MB, video ≤ 200 MB and 60 s, audio ≤ 50 MB, font (woff2/ttf/otf/woff) ≤ 2 MB. |
+| `url` | string |  | Public https URL. |
+| `data_base64` | string |  | The file, base64, ≤ 2 MB. |
+| `filename` | string |  | Its file name. |
+| `kind` | `image` · `video` · `audio` · `font` · `deck` |  | Required with url. image ≤ 20 MB, video ≤ 200 MB/60 s, audio ≤ 50 MB, font ≤ 2 MB, deck (PDF/PPTX) ≤ 30 MB. |
 | `name` | string |  | A label to find it again. |
 | `site_url` | string |  | Attach an image or clip to one of your sites. |
 

@@ -78,6 +78,19 @@ See [Credits & pricing](pricing.md).
 - **Undo**: `list_revisions` and `restore_revision` put a storyboard back as it was before any
   edit.
 
+## Send your own files
+
+- **`create_upload`** gives your assistant a one-hour address. It sends a file you gave it with one
+  command (`curl -sS -T <file> "<upload_url>"`): a picture, a clip, music, a font or a slide deck,
+  up to 30 MB.
+- **`upload_asset`** also takes small files inline (`data_base64`), and reads the kind from the bytes.
+- **Slide decks.** Send a PDF or a PowerPoint file as `kind: "deck"` and every slide comes back
+  with its text, its speaker notes and its pictures, which are added to your bank. That is enough
+  to write the storyboard: one slide, one scene. A PDF gives an image of each slide; for a
+  PowerPoint file, the pictures placed on the slides.
+- **In the app too.** Drop a file on the Media bank page. "Copy for your AI assistant" copies
+  its ids into a sentence to paste into any chat.
+
 ## Brand and defaults
 
 - **`set_brand_kit`** and **`get_brand_kit`** hold a site's logo, colours, font (including an
