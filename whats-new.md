@@ -7,7 +7,7 @@ description: "Everything added to PageToVid's MCP server and API in September 20
 # What's new
 {: .no_toc }
 
-PageToVid's MCP server grew from 38 to 73 tools in September 2026. This page lists what was added
+PageToVid's MCP server grew from 38 to 74 tools in September 2026. This page lists what was added
 and which tool does it. Every tool is documented in the [tool reference](mcp/tools.md), which is
 generated from the server itself.
 
@@ -52,7 +52,7 @@ See [Credits & pricing](pricing.md).
 - **`translate_video`** makes the same film in up to six languages. Quotes stay word for word,
   numbers are formatted for each language, and filmed scenes are re-recorded on the site's own
   localised page where it has one.
-- **Per-scene voice, speed and emotion** (`set_scene_voice`).
+- **Per-scene voice, speed and emotion**: the `set_scene_voice` operation of `update_storyboard`.
 - **`pronunciations`**: a lexicon for the voice only. Captions keep the written form.
 - **`[pause 500ms]`** markers in narration become real silence.
 - **`list_voices`** includes a real sample of every voice in every language.
@@ -82,7 +82,8 @@ See [Credits & pricing](pricing.md).
 
 - **`create_upload`** gives your assistant a one-hour address. It sends a file you gave it with one
   command (`curl -sS -T <file> "<upload_url>"`): a picture, a clip, music, a font or a slide deck,
-  up to 30 MB.
+  up to 30 MB per send. Within that, an image is at most 20 MB, a font 2 MB, and a clip 60 seconds.
+  A deck is read up to its first 40 slides.
 - **`upload_asset`** also takes small files inline (`data_base64`), and reads the kind from the bytes.
 - **Slide decks.** Send a PDF or a PowerPoint file as `kind: "deck"` and every slide comes back
   with its text, its speaker notes and its pictures, which are added to your bank. That is enough

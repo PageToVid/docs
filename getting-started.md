@@ -40,6 +40,9 @@ Pick the format before you start, because it changes what is filmed:
 | **9:16** | the site's own *mobile* layout, in a phone viewport | Reels, Shorts, TikTok |
 | **1:1** | the desktop layout, square | social feeds |
 
+The film can be narrated in thirteen languages: English, French, Spanish, German, Italian,
+Portuguese, Dutch, Arabic, Hindi, Korean, Polish, Turkish and Swedish.
+
 A **look** sets the captions, the cutting rhythm, the sound cues and the motion register together:
 `clean`, `bold`, `editorial`, `playful` or `tech`. Every setting it implies can be changed on its own
 later in the editor's **Style** panel: caption style and animation, colour grade, sound level, the
@@ -54,6 +57,10 @@ the warnings before you publish.
 
 Every film gets a public page with a player, a share bar, an embed code and an MP4 download, at
 `https://pagetovid.com/watch/<title>-<id>`.
+
+The QR code on the closing card opens the page you filmed, tagged `utm_source=pagetovid` so the
+site's own analytics can count the visits the film brings. A film made without a website links to
+its PageToVid page instead.
 
 ## 4. Edit without starting over
 
@@ -71,7 +78,7 @@ The scenes can be drawn as any of the animation templates, each previewed live i
 Dashboards and apps behind a sign-in are filmed through the
 [browser extension](https://pagetovid.com/extension) or the VS Code extension: you sign in yourself,
 the extension registers a capture session for that one site, and it expires within three days. No
-password ever reaches PageToVid.
+password ever reaches PageToVid. Filming behind a login needs the **Scale** plan or above.
 
 ## Plans and credits
 

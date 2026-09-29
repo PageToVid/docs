@@ -74,8 +74,9 @@ You do not set a clip's length or resolution — the request is planned from the
 
 The house clip costs 311 credits on top of the 40-credit render; a named model costs its price in the
 [table](../pricing#clip-prices-by-model), per second at the resolution made. `quote_cost` prices any
-request first, for free, and refuses a length or resolution the model does not offer rather than
-changing it. A clip is refunded if it fails. The
+request first, for free, and refuses a resolution the model does not offer rather than changing it.
+A length between two the model makes is rounded up to the next one, priced at that length, with a
+warning; a length outside what the model makes is refused. A clip is refunded if it fails. The
 render never stops for a failed clip: the scene falls back to its page still and its text, and
 `get_video` says so in `warnings` and `ai_report` — with the model's own reason, such as a refusal on
 content grounds (change the words) or a timeout (try again).

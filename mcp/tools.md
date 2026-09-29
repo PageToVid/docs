@@ -7,7 +7,7 @@ nav_order: 3
 # Tool reference
 {: .no_toc }
 
-Every tool the PageToVid MCP server publishes — **74 tools** — generated from the server's own `tools/list`, so each parameter here is exactly what your client receives. Endpoint: `http://localhost:3000/mcp`.
+Every tool the PageToVid MCP server publishes — **74 tools** — generated from the server's own `tools/list`, so each parameter here is exactly what your client receives. Endpoint: `https://pagetovid.com/mcp`.
 
 | Tool | Cost | What it does |
 |---|---|---|
@@ -25,7 +25,7 @@ Every tool the PageToVid MCP server publishes — **74 tools** — generated fro
 | [`create_video`](#create_video) | 40 credits | Turns a public web page into a narrated video: AI voiceover, motion graphics, optional subtitles. |
 | [`delete_character`](#delete_character) | Free | Deletes a character by name. |
 | [`delete_object`](#delete_object) | Free | Deletes an object by name. |
-| [`detect_brand`](#detect_brand) | Free | Opens a public web page in a real browser and reads its design tokens from the live CSS: accent colours, heading typeface, light or dark ground and corner style |
+| [`detect_brand`](#detect_brand) | Free | Reads a public page's design tokens from its live CSS in a real browser: accent colours, heading typeface, light or dark ground, corner style. |
 | [`fork_format`](#fork_format) | Free | A new format whose version 1 is the original's latest version, unpinned from its parent. |
 | [`generate_asset`](#generate_asset) | 40 or 311 credits | One AI still (40 credits each) or clip (house 311, a named model its list_models price) straight into your bank — no render. |
 | [`generate_site_videos`](#generate_site_videos) | 40 credits | Per video started. |
@@ -40,7 +40,7 @@ Every tool the PageToVid MCP server publishes — **74 tools** — generated fro
 | [`get_video`](#get_video) | Free | Reads this account. |
 | [`get_video_embed`](#get_video_embed) | Free | Returns ready-to-paste markup for a finished PageToVid video: an HTML video element, Open Graph and Twitter player meta tags so the page unfurls as a playable v |
 | [`import_objects`](#import_objects) | Free | Creates or replaces up to 50 objects from a product feed. |
-| [`inspect_page`](#inspect_page) | Free | Opens a public page in a real browser and ranks what a video could point its camera at — calls to action, product images, cards, pricing, testimonials, search b |
+| [`inspect_page`](#inspect_page) | Free | Opens a public page in a real browser and ranks what a video could film — calls to action, images, cards, pricing, testimonials, search boxes, headings — each w |
 | [`invite_member`](#invite_member) | Free | Emails an invite to this workspace with a role, optional site limits and monthly credit cap. |
 | [`list_assets`](#list_assets) | Free | Your PRIVATE bank: every image, clip and audio file this account generated, uploaded or captured, newest first, with its id, URL, brief and tags. |
 | [`list_characters`](#list_characters) | Free | The reusable characters on this account, each with its reference images and description. |
@@ -153,7 +153,7 @@ Make a video from data: an animated explainer, data or chart video from content 
 | `subtitles` | boolean |  | As create_video. Default `true`. |
 | `intro` | boolean |  | Include the branded opening title card. Default `true`. |
 | `outro` | boolean |  | As create_video. Default `true`. |
-| `target_seconds` | integer |  | A CHECK, not a setting: your words set the length. A script more than 15% off is refused before any credit moves, saying how many words to cut or add. Omitted: any length from 15 to 180 s. Range 15–180. |
+| `target_seconds` | integer |  | A check, not a setting: your words set the length. A script over 15% off is refused before any credit moves, with the words to cut or add. Omitted: the scenes alone must run at least 15 s, the film at most 180 s. Range 15–180. |
 | `title` | string |  | Name for the video. Defaults to the first scene's heading. |
 | `brand_name` | string |  | Name shown on the intro and outro cards. |
 | `cta_text` | string |  | Call to action on the closing card. |
@@ -207,7 +207,7 @@ A format is how an episode is made — aspect, language, voice, music, tone, goa
 | `goal` | `explainer` · `ad` · `demo` · `tutorial` · `article` |  | What the video is for; shapes the script. Default `"explainer"`. |
 | `aspect_ratio` | `16:9` · `9:16` · `1:1` · `4:5` |  | 16:9 for web and YouTube, 9:16 for Reels/Shorts/TikTok, 1:1 and 4:5 (1080×1350) for feeds. Default `"16:9"`. |
 | `language` | `en` · `fr` · `es` · `de` · `it` · `pt` · `nl` · `ar` · `hi` · `ko` · `pl` · `tr` · `sv` |  | Language of the voiceover and captions. Write the narration in this language. Default `"en"`. |
-| `target_seconds` | integer |  | A CHECK, not a setting: your words set the length. A script more than 15% off is refused before any credit moves, saying how many words to cut or add. Omitted: any length from 15 to 180 s. Range 15–180. |
+| `target_seconds` | integer |  | A check, not a setting: your words set the length. A script over 15% off is refused before any credit moves, with the words to cut or add. Omitted: the scenes alone must run at least 15 s, the film at most 180 s. Range 15–180. |
 | `tone` | string |  | Delivery of the narration, up to 80 characters — e.g. energetic, calm, authoritative, or a short direction like "dry and deadpan, like a friend telling a story". Default `"energetic"`. |
 | `voice` | `auto` · `Kore` · `Zephyr` · `Puck` · `Charon` · `Aoede` · `Fenrir` · `Leda` · `Orus` · `Callirrhoe` · `Achird` · `Sulafat` · `Sadachbia` |  | Narrator (all multilingual). auto picks a voice that fits the goal and tone and differs from the site's previous films. Default `"auto"`. |
 | `music` | string |  | Music bed, "none", or "asset:<id>" (upload_asset). auto fits the goal and differs from the site's previous films. Default `"auto"`. |
@@ -372,11 +372,11 @@ Deletes an object by name. Its images stay in your bank and media made with it s
 
 **Cost:** Free · read-only
 
-Opens a public web page in a real browser and reads its design tokens from the live CSS: accent colours, heading typeface, light or dark ground and corner style. Returns a theme object ready to pass to create_video, create_animation or rerender_video, plus any colour the site uses that the film cannot paint with and why. No video is made and no credit is spent.
+Reads a public page's design tokens from its live CSS in a real browser: accent colours, heading typeface, light or dark ground, corner style. Returns a theme ready for create_video, create_animation or rerender_video, plus any site colour the film cannot paint with and why.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
-| `url` | string | yes | A public page to read the brand from. The home page is usually the richest. |
+| `url` | string | yes | A public page of the site. A heavy home page can time out (read_failed); then try a content page. |
 
 ## fork_format
 
@@ -567,13 +567,13 @@ Creates or replaces up to 50 objects from a product feed. Each image is download
 
 **Cost:** Free · read-only
 
-Opens a public page in a real browser and ranks what a video could point its camera at — calls to action, product images, cards, pricing, testimonials, search boxes, headings — each with a CSS selector, a size and a score (a rank, not a percentage). Says when the browser met a robot check, a sign-in or a missing page instead (blocked, block_kind, not_found), and which text fields will never be typed into. The planner reads the same ranking. Nothing is made or charged.
+Opens a public page in a real browser and ranks what a video could film — calls to action, images, cards, pricing, testimonials, search boxes, headings — each with a CSS selector, kind, size and score (a rank, not a percentage). Says when a robot check, sign-in or missing page stood in front of it (blocked, block_kind), and which fields will never be typed into. The planner reads the same ranking.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `url` | string | yes | A public page to look at. Nothing is filmed and no credit is spent. |
 | `aspect_ratio` | `16:9` · `9:16` · `1:1` · `4:5` |  | The viewport to look through. 9:16 loads the page as a phone does, which is the layout a vertical video films — a responsive site offers different elements there (a sticky call bar, stacked cards) and they score differently. |
-| `limit` | integer |  | How many candidates to return, best first. A dense page offers up to 40 and a film needs four or five; the rest are the largest single thing this surface puts in a context window. The `kinds` histogram still counts every one, so nothing is hidden — raise this only when the shortlist has nothing you want. Default `12`. Range 1–40. |
+| `limit` | integer |  | How many candidates to return, best first (a page offers up to 40; a film uses four or five). The `kinds` histogram still counts every one. Default `12`. Range 1–40. |
 | `kinds` | string |  | Comma-separated kinds to keep, e.g. "cta,search,card". The vocabulary is in the `kinds` histogram of any reply: cta, media, image, card, pricing, testimonial, logos, heading, section, nav, search, chat, input. Omitted, every kind is offered. |
 
 ## invite_member
@@ -864,15 +864,15 @@ Closes the pending round as changes requested.
 
 **Cost:** 40 credits · destructive
 
-A new film from the video's current storyboard, without re-planning. Free once per video when the film missed its length target (length_within_tolerance: false). captions_only re-times the subtitles on the existing voice, free once per render. The file is replaced when the new render finishes. Returns a start receipt; call get_video for the full status.
+A new film from the video's current storyboard, without re-planning. Free once per video when the film missed its length target (length_within_tolerance: false). The file is replaced when the new render finishes. Returns a start receipt; call get_video for the full status.
 
 | Parameter | Type | Required | Description |
 |---|---|---|---|
 | `video_id` | string | yes | The video to re-render. |
 | `theme` | object |  | As create_video; replaces the video's theme and is kept for later re-renders. |
 | `idempotency_key` | string |  | A caller-chosen id for this request. Sending the same key again within 24 hours returns the same re-render instead of starting and charging a second time — use it if your client may retry. |
-| `captions_only` | boolean |  | true re-times the subtitles on the voice track the film already has and renders again — nothing is re-recorded, re-scripted or re-voiced, so only the caption timing changes. The first such resync after a paid render is free; the next one on the same render costs a render's credits. Use it when get_video's film has captions out of step with the voice. |
-| `target_seconds` | integer |  | Re-baseline how long this film is MEANT to be. The target a video was created with is often a guess made before any content existed; when the film has legitimately grown or shrunk since, set it to what it should be now rather than cutting to satisfy the old number. It changes what length_within_tolerance is measured against and is kept for later re-renders. It does not change the film — the narration is still what sets the length. Range 15–180. |
+| `captions_only` | boolean |  | true re-times the subtitles on the existing voice track and renders again; nothing is re-recorded, re-scripted or re-voiced. The first resync after a paid render is free, the next costs a render's credits. |
+| `target_seconds` | integer |  | What this film should run now, if it has legitimately grown or shrunk since creation. length_within_tolerance is measured against it and later re-renders keep it; their length fit aims at it (words you wrote are retimed, never rewritten). Range 15–180. |
 | `quality_gate` | object |  | As create_video, for this render. |
 | `outputs` | array |  | As create_video; must include this video's shape. Other shapes re-render their sibling or make one, a render each. |
 | `draft` | boolean |  | As create_video; only before the first paid render. |

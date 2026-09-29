@@ -76,7 +76,9 @@ A film is 40 credits; AI clips and stills are priced on top — see [Credits & p
 
 **The narration is the length.** A scene lasts exactly as long as the words spoken over it,
 because the voice is one continuous track. You set a film's running time by writing more or fewer
-words — about **110 words a minute** — not by asking for a duration. A scene with no narration is
+words — a script you write is read at about **138 words a minute** in English at a neutral tone,
+nearer 149 at the default `energetic` tone — not by asking for a duration. The intro and closing
+cards take about 4 seconds of it. A scene with no narration is
 silent and holds for as long as you tell it to.
 
 Everything else is in [Best practices](guides/best-practices).

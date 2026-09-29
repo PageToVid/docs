@@ -23,13 +23,21 @@ the narration and the captions, cut on the same rhythm.
 
 ## Where clips come from today
 
-Be precise about this, because it is the most common surprise: **pasting a link does not produce
-clips.** The automatic planner behind `create_video` films the site and draws motion-graphic cards;
-for a beat no page can show it may add an AI **still** (about two per film at most), and it never adds
-a clip. A clip is always something you ask for, in one of four ways:
+Pasting a link does not produce clips unless you ask for them. The automatic planner behind
+`create_video` films the site and draws motion-graphic cards, and `ai_mode` decides how much AI it
+may add for a beat no page can show:
+
+- **`none`** — no AI visuals; the film is made from the page alone. This is the default on the free
+  plan.
+- **`assist`** — a few AI stills, no clips. This is the default on paid plans.
+- **`rich`** — AI stills **and** clips (the house clip, or the model you name in `model`), within
+  `ai_budget` (`max_clips`, `max_images`).
+
+The ways to get a clip:
 
 | Where | How | Model |
 |---|---|---|
+| **`create_video`** | `ai_mode: "rich"`: the planner adds clips where the page cannot show the beat, within `ai_budget` | house clip, `model`, or `model: "auto"` |
 | **Web editor** | A scene's **Video clip** button: describe the shot, and the clip replaces that scene's picture | house clip |
 | **`create_animation`** | An `image` scene with `data.generate` (the shot) and `data.clip: true` | house clip, or `data.model` |
 | **`update_storyboard`** | `set_visual` a scene to `image` with the same `data`, or `add_scene` with it | house clip, or `data.model` |
@@ -94,15 +102,18 @@ hero shot `seedance-2.0`. Veo 3.1 Standard (`veo-3.1`) is used only when a scene
 You do not set a clip's length or resolution in a film — they are planned from the shot, within what
 the model makes:
 
-- **Length** is how long the scene will be on screen: its narration at about 110 words a minute plus a
-  breath, or its `duration_seconds` if it is silent. A model with a fixed menu of lengths gets the
+- **Length** is how long the scene will be on screen, estimated before the voice exists: its
+  narration at the cautious planning pace (about 110 words a minute in English) plus a breath, or its
+  `duration_seconds` if it is silent. A model with a fixed menu of lengths gets the
   shortest one that covers the scene. The house clip is always 8 seconds.
 - **Resolution** follows how big the clip is drawn: at least 720p (768p on MiniMax) for a clip that
   fills the frame, the model's cheapest tier for a presenter in a corner.
 - **A scene longer than the model's maximum** holds the clip's last frame for the rest of the scene,
   and the render says so. Shorten the narration, or pick a model with longer clips.
-- **Nothing is silently changed at quote time.** `quote_cost` refuses a length or resolution the model
-  does not offer, with the ones it does in `allowed`. During a render, if a model refuses a length it
+- **Nothing is silently changed at quote time.** `quote_cost` refuses a resolution the model does not
+  offer, with the ones it does in `allowed`. A length between two the model makes is rounded up to the
+  next one, priced at that length, with a warning; a length outside what the model makes is refused.
+  During a render, if a model refuses a length it
   advertises, it is asked once more at 5 seconds, the length every model has proven, and `ai_report`
   records it.
 

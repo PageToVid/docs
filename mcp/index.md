@@ -114,9 +114,13 @@ The shape most clients accept for a remote Streamable HTTP server. A client that
 
 A client that cannot run a browser sign-in (a CI job, a server-side agent) sends an API key instead: create one in your [account](https://pagetovid.com/account) and pass it as `Authorization: Bearer cp_live_…`. A key spends your credits — keep it in your secret manager, never in a repository.
 
+The MCP server works on every plan, with a key or a sign-in. The REST generation API is different:
+it is included from the Pro plan, and on Free and Starter `POST /api/v1/videos` answers `402` with code
+`UPGRADE_REQUIRED` — see [REST API](../api).
+
 ## What to read next
 
-- [Tool reference](tools) — all 38 tools and every parameter, generated from the server.
+- [Tool reference](tools) — all 74 tools and every parameter, generated from the server.
 - [The server's own guidance](instructions) — what the server tells every assistant when it connects.
 - [Credits & pricing](../pricing) — what everything costs; `list_models` and `quote_cost` price a request first, free.
 - [Best practices](../guides/best-practices) — how to get a film that is ready to publish.

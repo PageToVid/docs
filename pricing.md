@@ -44,13 +44,18 @@ really costs instead of being rounded to whole films.
 | **Agency** | $999 | $9,990 | 110,000 a month | 2,750 a month | agencies running many brands |
 | **Enterprise** | from $2,500 | — | custom | custom | custom volume, invoicing, a named contact |
 
+- **What each plan adds.** Starter adds AI stills and clips. Pro adds the REST generation API,
+  video packs (several angles of one page at once) and AI revisions from timestamped notes. Scale
+  adds filming pages behind a login. Business and Agency include everything Scale has.
 - **Yearly** billing is ten times the monthly price — two months free.
 - **Business and Agency** are the same product as Scale at a lower price per film: about $0.40
   and $0.36 a film monthly, $0.33 and $0.30 billed yearly.
 - **Enterprise** starts at $2,500 a month for custom volume, invoicing and a named contact:
   write to [hello@pagetovid.com](mailto:hello@pagetovid.com).
-- **Free** films carry a "Made with PageToVid" watermark, and a website's free allowance is
-  **three films across all free accounts**, however many accounts ask for it.
+- **Free** films carry a "Made with PageToVid" watermark, and end with a 2.5-second "Made with
+  PageToVid" sting after their own closing card. Paid plans have neither the watermark nor the sting.
+- A website's free allowance is **three films across all free accounts**, however many accounts ask
+  for it.
 - **AI stills and clips are a paid-plan feature.** On a free plan a scene that asks for one is drawn
   as text instead, and the result says so.
 
@@ -176,8 +181,10 @@ has not been made yet. A visual already made is reused at no charge.
 
 ### When a request is refused
 
-A length, resolution or model that is not offered is **refused, never silently changed**. The refusal
-names what is offered in `allowed`:
+A resolution or model that is not offered is **refused, never silently changed**. Lengths work like
+this: for a model with a fixed menu of lengths, a length between two on the menu is rounded up to the
+next one, priced at that length, and the quote says so in `warnings`. A length longer than the model
+makes, or outside a model's range, is refused. The refusal names what is offered in `allowed`:
 
 | Code | When | Example `allowed` |
 |---|---|---|
@@ -218,10 +225,15 @@ them all.
 - **A visual already made is never charged again**: re-rendering a storyboard, or moving a presenter
   to another corner, reuses the clips and stills it already has.
 
-## Credits from referrals and shows
+## Referrals and shows
 
-- **Referral:** 200 credits for a new account that signs up with your link, and 200 for you once it
-  verifies its email.
+- **Referral:** a new account that signs up with your link gets 200 credits once its email is
+  verified. You get 200 credits when that account's first film finishes, at most 20 times a month.
+  A referral past the 20th still earns commission.
+- **Commission:** you also earn a cash share of every payment a referred account makes, before tax,
+  for as long as it pays: 20% on credit packs and on the Starter, Pro and Scale plans, 10% on
+  Business, Agency and Enterprise. Each commission is held for 30 days, the refund window, and can
+  be paid out once you have $50.
 - **Shows** (recurring videos from a feed): each episode is an ordinary render, 40 credits.
   `max_credits_per_day` caps a show's daily spend, from 40 to 2,000 credits; the default, 120, is three
   episodes a day.

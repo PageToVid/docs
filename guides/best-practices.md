@@ -18,19 +18,24 @@ whether you work in the web app, through the API or through an assistant over MC
 ## 1. The narration is the length
 
 A scene lasts exactly as long as the words spoken over it: the voice is one continuous track and the
-pictures are cut to it. So you set a film's running time by the **number of words**, at roughly
-**110 words a minute**:
+pictures are cut to it. So you set a film's running time by the **number of words**. A script you
+write is read at about **138 words a minute** in English at a neutral tone. The tone moves it: about
+149 at `energetic`, the default, and about 124 at `calm`. Other languages run between 126 and 148 at
+a neutral tone (Korean, counted in longer words, about 113). The intro and closing cards carry no
+voice and take about 4 seconds of the film, so the words fill the rest:
 
-| Film | Words |
-|---|---|
-| 15 s | ~25 |
-| 30 s | ~55 |
-| 45 s | ~80 |
-| 60 s | ~110 |
+| Film | Words, `energetic` (default) | Words, neutral | Words, `calm` |
+|---|---|---|---|
+| 15 s | ~28 | ~26 | ~23 |
+| 30 s | ~65 | ~60 | ~54 |
+| 45 s | ~103 | ~95 | ~85 |
+| 60 s | ~140 | ~129 | ~116 |
 
-`target_seconds` is a brief the result is measured against, not a lever — asking for 30 seconds over
-120 words gives you a minute. `trim_scene` only changes a **silent** scene; a narrated one is as long as
-its narration.
+These are for English.
+
+With a script you write, `target_seconds` is a brief the result is measured against, not a lever —
+asking for 30 seconds over 120 words gives you about 50 seconds. `trim_scene` only changes a
+**silent** scene; a narrated one is as long as its narration.
 
 ## 2. Inspect before you film
 
@@ -75,10 +80,11 @@ said in your customer's voice. A line in quotation marks is placed verbatim, usu
 
 Each scene has three independent choices, all published by `list_motions`:
 
-- **Visual** — what it is drawn as (21 of them: statement, chart, timeline, grid, pricing, quote, a
+- **Visual** — what it is drawn as (22 of them: statement, chart, timeline, grid, pricing, quote, a
   message thread, a before/after wipe…), or a recording of the site.
 - **Motion** — how its contents animate in. It must belong to the visual's family.
-- **Transition** — how the scene arrives: cut, crossfade, whip, zoom punch, flash, swipe, glitch.
+- **Transition** — how the scene arrives (15 of them: cut, crossfade, whip, zoom punch, flash, swipe,
+  glitch…).
 
 A motion or transition you name is the one you get; nothing is silently swapped. When you name none,
 the film's cutting rhythm follows from what it is — an ad or a 9:16 film cuts hard, a long read
