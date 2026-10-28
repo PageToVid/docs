@@ -21,13 +21,16 @@ you write yourself.
 
 ---
 
-## Three ways in
+## Ways in
 
 | | Best for | Start here |
 |---|---|---|
 | **Web app** | One film at a time, edited visually with a live preview | [Getting started](getting-started) |
 | **MCP server** | Asking Claude, Cursor, VS Code or Codex for a film in plain words | [MCP server](mcp/) |
 | **REST API** | Automations, bulk generation, video previews in your product | [API](api) |
+| **Chrome & VS Code** | Capturing pages, filming your app behind its login, planning films from your code | [Extensions](extensions) |
+
+See what comes out in the [examples](examples), and the [tips](tips) for a better film first time.
 
 ## What a film looks like
 
