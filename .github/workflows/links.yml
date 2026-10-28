@@ -35,6 +35,6 @@ jobs:
             --accept 200,206,429
             --exclude-path mcp/tools.md
             --exclude '^https://(www\.)?(x|linkedin|instagram|facebook|pinterest)\.com'
-            --exclude '^https://pagetovid\.com/(new|account|projects)'
+            --exclude '^https://pagetovid\.com/(new|account|projects|mcp$)'
             './**/*.md'
           fail: true
